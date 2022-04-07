@@ -29,9 +29,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-     
-
-            Schema::create('locations', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('location_name');
             $table->string('location_building');
@@ -49,21 +47,21 @@ return new class extends Migration
             $table->renameColumn('id', 'location_id');
         });
 
-
         Schema::create('booking_lists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('location_id');
-            $table->string('project_cost');
             $table->string('project_name');
             $table->string('agency');
             $table->string('club_name');
-            $table->string('start_date');
-            $table->string('end_date');
-            $table->string('start_time');
-            $table->string('end_time');
-            $table->string('status');
-            $table->string('status_cost');
+            $table->string('start');
+            $table->string('end');
+            $table->string('file_document');
+            $table->string('project_cost')->default(0);
+            $table->string('status')->default(0);
+            $table->string('title')->default(0);
+            $table->string('status_email')->default(0);
+            $table->string('status_cost')->default(0);
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('location_id')->references('location_id')->on('locations');
             $table->timestamps();

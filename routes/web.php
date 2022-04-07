@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\AddBookingUserout;
+use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\LocaiotnManageSuperAdmin;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\UserManageSuperAdmin;
-use App\Http\Controllers\AddBookingUserout;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,8 +35,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/locationmanage/add', [LocaiotnManageSuperAdmin::class, 'store'])->name('location-manage-add');
     Route::get('/locationmanage/delete/{id}', [LocaiotnManageSuperAdmin::class, 'delete']);
     Route::post('/locationmanage/update/{id}', [LocaiotnManageSuperAdmin::class, 'update']);
-    
 
     //user ภายนอก
     Route::get('/addbooking/', [AddBookingUserout::class, 'index'])->name('add-booking');
+    Route::get('/addbooking/{id}', [AddBookingUserout::class, 'edit']);
+    Route::post('/addbooking/add', [AddBookingUserout::class, 'store'])->name('booking-add');
+
+    Route::get('fullcalender/', [FullCalenderController::class, 'index']);
+    Route::get('fullcalender2/{id}', [AddBookingUserout::class, 'index2']);
+    Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+    Route::resource('/booking', FullCalenderController::class);
+
 });

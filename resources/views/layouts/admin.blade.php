@@ -12,13 +12,13 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="/../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="/../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.0" rel="stylesheet" />
+    <link id="pagestyle" href="/../assets/css/argon-dashboard.css?v=2.0.0" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
@@ -44,7 +44,6 @@
             <ul class="navbar-nav">
 
                 @if (request()->routeIs('index'))
-
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('index') }}">
                             <div
@@ -52,10 +51,11 @@
                                 <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Dashboard</span>
+
+
                         </a>
                     </li>
                 @else
-
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('index') }}">
                             <div
@@ -68,7 +68,6 @@
                 @endif
 
                 @if (request()->routeIs('user-manage'))
-
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('user-manage') }}">
                             <div
@@ -79,7 +78,6 @@
                         </a>
                     </li>
                 @else
-
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('user-manage') }}">
                             <div
@@ -94,7 +92,6 @@
 
 
                 @if (request()->routeIs('location-manage'))
-
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('location-manage') }}">
                             <div
@@ -105,7 +102,6 @@
                         </a>
                     </li>
                 @else
-
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('location-manage') }}">
                             <div
@@ -143,20 +139,19 @@
 
                     {{-- navigation --}}
                     @if (request()->routeIs('user-manage'))
-
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                     href="javascript:;">Pages</a>
                             </li>
                             <li class="breadcrumb-item text-sm text-white active" aria-current="page">จัดการข้อมูลผู้ใช้
+
+
                             </li>
                         </ol>
-
                     @endif
 
 
                     @if (request()->routeIs('location-manage'))
-
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                     href="javascript:;">Pages</a>
@@ -164,7 +159,6 @@
                             <li class="breadcrumb-item text-sm text-white active" aria-current="page">จัดการข้อมูลห้อง
                             </li>
                         </ol>
-
                     @endif
                     {{-- navigation --}}
 
@@ -178,6 +172,7 @@
                         </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
+
                         <li class="nav-item d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
 
@@ -292,10 +287,10 @@
 
     <!--   Core JS Files   -->
 
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="/../assets/js/core/popper.min.js"></script>
+    <script src="/../assets/js/core/bootstrap.min.js"></script>
+    <script src="/../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="/../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="../assets/js/plugins/chartjs.min.js"></script>
 
 
