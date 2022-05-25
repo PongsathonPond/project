@@ -25,4 +25,18 @@ class BookingList extends Model
         'title',
 
     ];
+
+    public function booktolocation()
+    {
+
+        return $this->hasMany(Location::class, 'location_id', 'location_id');
+
+    }
+
+    public function booktouser()
+    {
+
+        return $this->hasMany(User::class, 'id', 'user_id');
+
+    }
 }

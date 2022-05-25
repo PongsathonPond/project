@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="row">
         <div class="col-12">
 
@@ -43,8 +42,6 @@
                             <tbody>
 
                                 @foreach ($users as $row)
-
-
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2 py-1">
@@ -100,8 +97,7 @@
                                                                     <h3
                                                                         class="font-weight-bolder text-primary text-gradient">
                                                                         แก้ไขข้อมูล</h3>
-                                                                    <p class="mb-0">กรุณาเพิ่มข้อมูลเพื่อแก้ไข
-                                                                    </p>
+
                                                                 </div>
                                                                 <div class="card-body pb-3">
                                                                     <form role="form text-left"
@@ -125,7 +121,6 @@
                                                                                         @if ($row->title_name == 'นางสาว')
                                                                                             <option value="นาย">นาย
                                                                                             </option>
-
                                                                                         @else
                                                                                             <option value="นางสาว">
                                                                                                 นางสาว
@@ -235,9 +230,6 @@
             </td>
 
             </tr>
-
-
-
             @endforeach
 
 
@@ -249,5 +241,4 @@
     </div>
     </div>
     </div>
-
 @endsection

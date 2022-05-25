@@ -58,9 +58,11 @@
                 </div>
                 <div class="modal-body">
 
-                    <span>ชื่อรายการจอง : <span id="test"> </span>
+                    <span>ชื่อรายการจอง : <b> <span id="project_name"> </b></span>
                     </span>
-
+                    <br>
+                    <span>เวลาเริ่ม-สิ้นสุด : <b> <span id="title"></b> </span>
+                    </span>
 
                 </div>
                 <div class="modal-footer">
@@ -70,6 +72,14 @@
             </div>
         </div>
     </div>
+
+    {{-- @foreach ($booking as $row)
+        @foreach ($row->booktolocation as $item)
+            {{ $item->location_name }}
+        @endforeach
+    @endforeach --}}
+
+
 
 
     <script>
@@ -105,8 +115,9 @@
                         type: 'get',
                         url: "{{ url('/booking') }}/" + calEvent.id,
                         success: function(respones) {
-                            console.log(respones.project_name);
-                            $('#test').text(respones.id);
+
+                            $('#project_name').text(respones.project_name);
+                            $('#title').text(respones.title);
                         }
 
                     })
