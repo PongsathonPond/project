@@ -51,5 +51,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //admin จัดการคำขอ
 
     Route::get('/request/superadmin', [RequestController::class, 'index'])->name('request-manage');
-
+    Route::post('/request/update/{id}', [RequestController::class, 'update']);
+    Route::get('/request/delete/{id}', [RequestController::class, 'delete']);
 });

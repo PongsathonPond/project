@@ -4469,36 +4469,37 @@ fieldset:disabled .btn {
     margin: 0;
     font-size: 0.875rem;
     color: #67748e;
-    text-align: left;
     list-style: none;
     background-color: #fff;
-    background-clip: padding-box;
+    
     border: 0 solid transparent;
     border-radius: 0.5rem;
+    
 }
 
 .dropdown-menu[data-bs-popper] {
     top: 100%;
     left: 0;
     margin-top: 1.625rem;
+   
 }
 
-.dropdown-menu-start {
-    --bs-position: start;
-}
 
 .dropdown-menu-start[data-bs-popper] {
     right: auto;
     left: 0;
+   
 }
 
 .dropdown-menu-end {
     --bs-position: end;
+    
 }
 
 .dropdown-menu-end[data-bs-popper] {
     right: 0;
     left: auto;
+    
 }
 
 @media (min-width: 576px) {
@@ -4617,10 +4618,12 @@ fieldset:disabled .btn {
     border-right: 0.3em solid transparent;
     border-bottom: 0.3em solid;
     border-left: 0.3em solid transparent;
+    
 }
 
 .dropup .dropdown-toggle:empty::after {
     margin-left: 0;
+    margin-left: 20;
 }
 
 .dropend .dropdown-menu[data-bs-popper] {
@@ -4629,6 +4632,7 @@ fieldset:disabled .btn {
     left: 100%;
     margin-top: 0;
     margin-left: 1.625rem;
+
 }
 
 .dropend .dropdown-toggle::after {
@@ -4640,6 +4644,7 @@ fieldset:disabled .btn {
     border-right: 0;
     border-bottom: 0.3em solid transparent;
     border-left: 0.3em solid;
+    
 }
 
 .dropend .dropdown-toggle:empty::after {
@@ -4705,6 +4710,7 @@ fieldset:disabled .btn {
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+  
 }
 
 .dropdown-item:hover,
