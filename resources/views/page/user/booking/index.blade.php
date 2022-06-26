@@ -55,7 +55,8 @@
                 <a href="{{ asset($item->file_document) }}" target=" _blank">Open the pdf!</a>
             @endforeach --}}
 
-
+ <label for="example-datetime-local-input" class="form-control-label">Datetime</label>
+        <input class="form-control" type="datetime-local" value="2018-11-23T10:30:00" id="example-datetime-local-input">
         </div>
     </div>
 @endsection

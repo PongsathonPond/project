@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @section('content')
-
-
     <div class="row">
         <div class="col-xl-8 order-xl-1">
             @if (session('success'))
@@ -74,7 +72,6 @@
                             </thead>
                             <tbody>
                                 @foreach ($location as $row)
-
                                     <tr>
 
                                         <td class="align-middle text-center">
@@ -111,8 +108,8 @@
                                                             <h5 class="modal-title" id="exampleModalLabel">
                                                                 แก้ไขข้อมูลห้อง
                                                             </h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -210,7 +207,8 @@
                                                                                     <span
                                                                                         class="badge badge-pill bg-gradient-primary">{{ $row->location_type }}</span>
                                                                                 </label>
-                                                                                <select type="text " class="form-control "
+                                                                                <select type="text "
+                                                                                    class="form-control "
                                                                                     name="location_type">
 
                                                                                     <option
@@ -245,8 +243,9 @@
 
                                                                                 <br>
                                                                                 <img src="{{ asset($row->location_image) }}"
-                                                                                    style="margin-left: 25%" alt=""
-                                                                                    width="200px" height="200px">
+                                                                                    style="margin-left: 25%"
+                                                                                    alt="" width="200px"
+                                                                                    height="200px">
                                                                             </div>
 
                                                                             <input type="hidden" name="old_image"
@@ -360,7 +359,8 @@
 
                                             <div class="col-lg-5">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="location_building">อาคาร</label>
+                                                    <label class="form-control-label"
+                                                        for="location_building">อาคาร</label>
                                                     <input type="text" class="form-control" name="location_building">
                                                 </div>
                                             </div>
@@ -414,7 +414,8 @@
                                         </div>
                                     </div>
                                     <hr class="my-4" />
-                                    <input type="submit" value="เพิ่ม" class="btn btn-success " style="margin-left: 40%">
+                                    <input type="submit" value="เพิ่ม" class="btn btn-success "
+                                        style="margin-left: 40%">
                                     @error('accessories_number')
                                         <div class="my-2">
                                             <span class="text-danger my-2"> {{ $message }} </span>
@@ -439,5 +440,4 @@
 
 
     </div>
-
 @endsection

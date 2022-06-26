@@ -67,6 +67,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('staffs', function (Blueprint $table) {
+            $table->id();
+            $table->string('email')->unique();
+            $table->string('password');
+
+        });
+
     }
 
     /**
@@ -79,5 +86,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('booking_lists');
         Schema::dropIfExists('locations');
+        Schema::dropIfExists('locations');
+        Schema::dropIfExists('staffs');
     }
 };

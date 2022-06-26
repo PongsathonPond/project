@@ -44,7 +44,6 @@
             <ul class="navbar-nav">
 
                 @if (request()->routeIs('index'))
-
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('index') }}">
                             <div
@@ -55,7 +54,6 @@
                         </a>
                     </li>
                 @else
-
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('index') }}">
                             <div
@@ -68,7 +66,6 @@
                 @endif
 
                 @if (request()->routeIs('add-booking'))
-
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('add-booking') }}">
                             <div
@@ -79,7 +76,6 @@
                         </a>
                     </li>
                 @else
-
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('add-booking') }}">
                             <div
@@ -117,7 +113,6 @@
 
 
                     @if (request()->routeIs('index'))
-
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                     href="javascript:;">Pages</a>
@@ -125,11 +120,9 @@
                             <li class="breadcrumb-item text-sm text-white active" aria-current="page">หน้าหลัก
                             </li>
                         </ol>
-
                     @endif
 
                     @if (request()->routeIs('add-booking'))
-
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                     href="javascript:;">Pages</a>
@@ -137,7 +130,6 @@
                             <li class="breadcrumb-item text-sm text-white active" aria-current="page">เพิ่มการจอง
                             </li>
                         </ol>
-
                     @endif
 
 
@@ -204,8 +196,10 @@
                     <p>สถานะ:ผู้ใช้ภายนอก</p>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('logout') }} " class="ni ni-user-run " onclick="event.preventDefault();
-                                          this.closest('form').submit();">ออกจากระบบ </a>
+                        <a href="{{ route('logout') }} " class="ni ni-user-run "
+                            onclick="event.preventDefault();
+                                          this.closest('form').submit();">ออกจากระบบ
+                        </a>
                     </form>
 
                 </div>

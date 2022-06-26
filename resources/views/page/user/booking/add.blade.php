@@ -76,7 +76,11 @@
                                             class="form-control-label">Datetime</label>
                                         <input class="form-control" type="datetime-local" name="end"
                                             value="2022-11-23T10:30:00" id="example-datetime-local-input">
+
+                                            
                                     </div>
+
+                                   
                                 </div>
 
                                 <div class="col-md-4">

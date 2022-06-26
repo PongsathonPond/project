@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AddBookingUserout;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\LocaiotnManageSuperAdmin;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\UserManageSuperAdmin;
+use App\Http\Controllers\vice_admin\Vice_RequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +39,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/locationmanage/delete/{id}', [LocaiotnManageSuperAdmin::class, 'delete']);
     Route::post('/locationmanage/update/{id}', [LocaiotnManageSuperAdmin::class, 'update']);
 
-    //user ภายนอก
+    //user ภายนอกส่ง data
     Route::get('/addbooking/', [AddBookingUserout::class, 'index'])->name('add-booking');
     Route::get('/addbooking/{id}', [AddBookingUserout::class, 'edit']);
     Route::post('/addbooking/add', [AddBookingUserout::class, 'store'])->name('booking-add');
@@ -49,8 +51,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('/booking', FullCalenderController::class);
 
     //admin จัดการคำขอ
-
     Route::get('/request/superadmin', [RequestController::class, 'index'])->name('request-manage');
     Route::post('/request/update/{id}', [RequestController::class, 'update']);
     Route::get('/request/delete/{id}', [RequestController::class, 'delete']);
+
+    //sendemail
+
+    Route::post('/sendmail', [EmailController::class, 'sendEmail'])->name('addlist');
+
+    //vice_admin
+
+    //vice_admin จัดการคำขอ
+    Route::get('/request/vice_admin', [Vice_RequestController::class, 'index'])->name('request_vice');
+
 });

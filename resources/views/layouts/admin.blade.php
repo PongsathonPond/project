@@ -42,6 +42,9 @@
         <hr class="horizontal dark mt-0">
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ผู้ดูแลระบบ</h6>
+                </li>
 
                 @if (request()->routeIs('index'))
                     <li class="nav-item">
@@ -142,7 +145,27 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ฝ่ายสินทรัพย์</h6>
                 </li>
 
-
+                @if (request()->routeIs('request_vice'))
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('request_vice') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">จัดการคำขอ</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('request_vice') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">จัดการคำขอ</span>
+                        </a>
+                    </li>
+                @endif
 
             </ul>
         </div>
@@ -163,7 +186,8 @@
                             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                     href="javascript:;">Pages</a>
                             </li>
-                            <li class="breadcrumb-item text-sm text-white active" aria-current="page">จัดการข้อมูลผู้ใช้
+                            <li class="breadcrumb-item text-sm text-white active" aria-current="page">
+                                จัดการข้อมูลผู้ใช้
 
 
                             </li>
@@ -245,8 +269,10 @@
                     <p>สถานะ:ผู้ใช้ภายนอก</p>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="{{ route('logout') }} " class="ni ni-user-run " onclick="event.preventDefault();
-                                          this.closest('form').submit();">ออกจากระบบ </a>
+                        <a href="{{ route('logout') }} " class="ni ni-user-run "
+                            onclick="event.preventDefault();
+                                          this.closest('form').submit();">ออกจากระบบ
+                        </a>
                     </form>
 
                 </div>
