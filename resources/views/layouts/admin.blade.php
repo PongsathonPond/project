@@ -93,7 +93,7 @@
                     </li>
                 @endif
 
-
+         
 
                 @if (request()->routeIs('location-manage'))
                     <li class="nav-item">
@@ -168,9 +168,30 @@
                     </li>
                 @endif
 
+              
+
+           
             </ul>
         </div>
-
+        <div class="sidenav-footer mx-3 ">
+            <div class="card card-plain shadow-none" id="sidenavCard">
+           
+            <div class="card-body text-center p-3 w-100 pt-9">
+            <div class="docs-info">
+            
+            
+            </div>
+            </div>
+            </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+            <a class=" btn btn-primary btn-sm mb-0 w-100  " href="{{ route('logout') }}" onclick="event.preventDefault();
+            this.closest('form').submit();">
+               ออกจากระบบ
+            </a>
+        </form>
+           
+        </div>
     </aside>
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
@@ -205,6 +226,8 @@
                             </li>
                         </ol>
                     @endif
+
+                    
                     {{-- navigation --}}
 
                 </nav>

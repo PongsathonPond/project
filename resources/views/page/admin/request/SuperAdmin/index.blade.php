@@ -7,11 +7,13 @@
     }
 </style>
 @inject('thaiDateHelper', 'App\Services\ThaiDateHelperService')
-
+       
 @section('content')
-@push('js')
+
     <div class="row">
         <div class="col-xl-12 order-xl-1">
+
+           
             @if (session('success'))
                 <script>
                     Swal.fire({
@@ -49,14 +51,16 @@
             @endif
 
 
-
+          
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h4>จัดการข้อมูลการจอง</h4>
                 </div>
                 <br>
                 <div class="card-body px-0 pt-0 pb-2">
+                   
                     <div class="table-responsive p-0">
+
                         <table class="align-items-center mb-0 table" id="myTable">
                             <thead>
                                 <tr>
@@ -82,12 +86,12 @@
                                     </th>
                                 </tr>
                             </thead>
+                            @push('js')
 
 
-                           
+                            
                             <tbody>
-
-
+                               
                                 @foreach ($booking as $item)
                                     <tr>
 
@@ -351,13 +355,13 @@
                             </tbody>
                         </table>
 
-                        
-
+                      
                     </div>
 
                 </div>
 
             </div>
+            
             {{ $booking->links() }}
 
         </div>
@@ -385,11 +389,12 @@ $(document).ready( function () {
 
 </script>
 
+
         <script src="/../assets/js/core/popper.min.js"></script>
         <script src="/../assets/js/core/bootstrap.min.js"></script>
 
-
     </div>
-
+    
     @endpush
+
 @endsection
