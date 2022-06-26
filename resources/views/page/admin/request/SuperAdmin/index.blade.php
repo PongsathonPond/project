@@ -9,6 +9,7 @@
 @inject('thaiDateHelper', 'App\Services\ThaiDateHelperService')
 
 @section('content')
+@push('js')
     <div class="row">
         <div class="col-xl-12 order-xl-1">
             @if (session('success'))
@@ -56,7 +57,7 @@
                 <br>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="align-items-center mb-0 table">
+                        <table class="align-items-center mb-0 table" id="myTable">
                             <thead>
                                 <tr>
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
@@ -73,8 +74,8 @@
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         สถานะ</th>
 
-                                    <th class="text-aa font-weight-bolder text-right text-xs"
-                                        data-sort="name" ">
+                                    <th class="text-aa font-weight-bolder text-center text-xs"
+                                        data-sort="name" >
                                                                                                                                                                                                                                                                                                                                                                                              จัดการ</th>
                                                                                                                                                                                                                                                                                                                                                                                              <th class="text-aa font-weight-bolder text-center text-xs"
                                                                                                                                                                                                                                                                                          data-sort="name" ">
@@ -83,6 +84,7 @@
                             </thead>
 
 
+                           
                             <tbody>
 
 
@@ -226,15 +228,6 @@
                                             <!-- EndModalEmail -->
 
 
-
-
-
-
-
-
-
-
-
                                             <!-- ModalEditUser -->
                                             <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -358,7 +351,7 @@
                             </tbody>
                         </table>
 
-
+                        
 
                     </div>
 
@@ -368,13 +361,35 @@
             {{ $booking->links() }}
 
         </div>
+       
+
+<script>
+
+$(document).ready( function () {
+    $('#myTable').DataTable({
+        paging: false,
+        ordering: false,
+        info: false,
+        "language": {
+            "search": "ค้นหา:",
+            "lengthMenu": "",
+            "zeroRecords": "ไม่พบข้อมูล - ขออภัย",
+            "info": '',
+            "infoEmpty": "ไม่มีข้อมูล",
+            "infoFiltered": "",
+            "paginate": ""
+        }
+    });
+} );
 
 
-
+</script>
 
         <script src="/../assets/js/core/popper.min.js"></script>
         <script src="/../assets/js/core/bootstrap.min.js"></script>
 
 
     </div>
+
+    @endpush
 @endsection

@@ -33,8 +33,6 @@
                                         <input class="form-control" type="text" value="{{ $location->location_name }}"
                                             readonly>
                                         <input type="hidden" name="location_id" value="{{ $location->location_id }}">
-
-
                                     </div>
                                 </div>
 

@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
 <style type="text/css">
     a[disabled="disabled"] {
         pointer-events: none;
@@ -46,6 +47,8 @@
                     })
                 </script>
             @endif
+
+
 
 
 
