@@ -291,22 +291,13 @@
                     <br>
                     <p>นาย พงศธร ลครชัย</p>
                     <p>สถานะ:ผู้ใช้ภายนอก</p>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a href="{{ route('logout') }} " class="ni ni-user-run "
-                            onclick="event.preventDefault();
-                                          this.closest('form').submit();">ออกจากระบบ
-                        </a>
-                    </form>
-
+             
                 </div>
 
 
 
 
-                <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-                    <i class="fa fa-close"></i>
-                </button>
+              
 
 
 

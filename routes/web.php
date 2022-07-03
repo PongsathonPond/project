@@ -7,6 +7,7 @@ use App\Http\Controllers\LocaiotnManageSuperAdmin;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\UserManageSuperAdmin;
+use App\Http\Controllers\user_out\User_RequestController;
 use App\Http\Controllers\vice_admin\Vice_RequestController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,5 +64,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //vice_admin จัดการคำขอ
     Route::get('/request/vice_admin', [Vice_RequestController::class, 'index'])->name('request_vice');
+
+    //user_out คำขอของฉัน
+    Route::get('/request/user', [User_RequestController::class, 'index'])->name('request_user');
+    Route::get('/request/detail/{id}', [User_RequestController::class, 'detail']);
 
 });

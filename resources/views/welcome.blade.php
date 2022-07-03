@@ -24,7 +24,7 @@
         
             <strong style="color: red">อีเมล์หรือรหัสผ่านไม่ถูกต้อง</strong>
        
-         @endif
+           @endif
            
             <div class="input-field">
               
@@ -41,13 +41,13 @@
             </div>
              <button type="submit" type="submit"  class="btn solid" >Login</button>
 
-            <p class="social-text">ลงชื่อเข้าใช้ด้วยบัญชีมหาลัย</p>
+            <p class="social-text">ลงชื่อเข้าใช้ด้วยบัญชีมหาวิทยาลัย</p>
           </form>
 
         
             
             <div class="social-media">
-              <a href="#" class="social-icon" data-toggle="tooltip" title="สำหรับนักศึกษาและบุคลากร">
+              <a href="https://login.rmuti.ac.th/index.php?AuthState=_be685bbb46597eb4163629afab321ddb6f218fbfc0%3Ahttps%3A%2F%2Flogin.rmuti.ac.th%2Fidp%2Fsaml2%2FSSOService.php%3Fspentityid%3Dwww.cpe.rmuti.ac.th%252Fsso%26cookieTime%3D1656861814%26RelayState%3Dhttps%253A%252F%252Fwww.cpe.rmuti.ac.th%252Fsso%252Fsample-acs.php" class="social-icon" data-toggle="tooltip" title="สำหรับนักศึกษาและบุคลากร">
                 <i class="fas fa-sign-in-alt"></i>
               </a>
               <a href="#" class="social-icon" data-toggle="tooltip" title="สำหรับผู้ดูแลสถานที่">
