@@ -1,20 +1,21 @@
 @extends('layouts.admin')
 
 @section('content')
+@if (session('success'))
+<script>
+ Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'โหลดข้อมูลเรียบร้อย',
+  showConfirmButton: false,
+  timer: 1500
+ })
+</script>
+@endif
  <div class="row">
   <div class="col-12">
 
-   @if (session('success'))
-    <script>
-     Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'โหลดข้อมูลเรียบร้อย',
-      showConfirmButton: false,
-      timer: 1500
-     })
-    </script>
-   @endif
+  
 
 
 

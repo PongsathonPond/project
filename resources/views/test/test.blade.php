@@ -14,19 +14,7 @@
     <script type="text/javascript" src="index.js"></script>
     <style>
         .error {
-            color: red !important
-        }
-
-        .dash {
-            height: 400px;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            font-weight: bold;
-            display: flex;
-            color: green;
-            flex-direction: column;
-
+            color: red
         }
     </style>
 </head>
@@ -36,12 +24,10 @@
         <!-- main app container -->
         <div class="readersack">
             <div class="container">
+                <br><br>
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-
-                        {{-- {{ dd(session()->all()) }} --}}
-
-                        <!-- Show any success message -->
+                        <h3> Test STAFF Login </h3>
                         @if (\Session::has('success'))
                             <div class="alert alert-success">
                                 <ul>
@@ -49,15 +35,32 @@
                                 </ul>
                             </div>
                         @endif
-                        <!-- Show any success message -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form method="post" id="handleAjax" action="{{ url('do-login') }}" name="postform">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" value="{{ old('email') }}"
+                                    class="form-control" />
 
-                        <!-- Check user is logged in -->
 
-                        <div class='dash'>You are logged in as : <br> Email :{{ session('email') }}
-                            ID:{{ session('id') }}, <a href="{{ url('logout') }}"> Logout</a></div>
-
-
-                        <!-- Check user is logged in -->
+                                @csrf
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">LOGIN</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

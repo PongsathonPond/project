@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AddBookingUserout;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\LocaiotnManageSuperAdmin;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserManageSuperAdmin;
 use App\Http\Controllers\user_out\User_RequestController;
 use App\Http\Controllers\vice_admin\Vice_RequestController;
@@ -23,7 +25,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('indexpage');
 });
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -69,4 +71,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/request/user', [User_RequestController::class, 'index'])->name('request_user');
     Route::get('/request/detail/{id}', [User_RequestController::class, 'detail']);
 
+    //staff เพิ่มผู้ดูแลระบบ
+
+    Route::get('/manage/staff', [StaffController::class, 'index'])->name('staff_add');
+    Route::get('/manage/delete/{id}', [StaffController::class, 'delete']);
+
 });
+
+Route::get('/staff_login', [AuthController::class, "LoginView"])->name('stafflogin');
+Route::post('/do-login', [AuthController::class, "doLogin"]);
+Route::post('/do-register', [AuthController::class, "doRegister"]);
+Route::get('/dashboard', [AuthController::class, "dashboard"]);
+Route::get('/logout', [AuthController::class, "logout"]);

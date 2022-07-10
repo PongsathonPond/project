@@ -47,9 +47,17 @@ return new class extends Migration
             $table->renameColumn('id', 'location_id');
         });
 
+        Schema::create('staff', function (Blueprint $table) {
+            $table->id();
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->timestamps();
+        });
+
         Schema::create('booking_lists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('staff_id');
             $table->unsignedBigInteger('location_id');
             $table->string('project_name');
             $table->string('agency');
@@ -63,15 +71,9 @@ return new class extends Migration
             $table->string('status_email')->default(0);
             $table->string('status_cost')->default(0);
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('staff_id')->references('id')->on('staff');
             $table->foreign('location_id')->references('location_id')->on('locations');
             $table->timestamps();
-        });
-
-        Schema::create('staffs', function (Blueprint $table) {
-            $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-
         });
 
     }
@@ -86,7 +88,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('booking_lists');
         Schema::dropIfExists('locations');
-        Schema::dropIfExists('locations');
-        Schema::dropIfExists('staffs');
+        Schema::dropIfExists('staff');
+
     }
 };

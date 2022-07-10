@@ -75,10 +75,10 @@
                                         <input class="form-control" type="datetime-local" name="end"
                                             value="2022-11-23T10:30:00" id="example-datetime-local-input">
 
-                                            
+
                                     </div>
 
-                                   
+
                                 </div>
 
                                 <div class="col-md-4">
@@ -93,6 +93,7 @@
 
                             </div>
                             <br>
+                            <input type="hidden" name="staff_id" value="null">
                             <input type="submit" value="เพิ่ม" class="btn btn-success ">
                         </form>
 
@@ -111,7 +112,6 @@
                     height: 70vh;
 
                 }
-
             </style>
 
 

@@ -19,8 +19,9 @@
     <link href="/../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="/../assets/css/argon-dashboard.css?v=2.0.0" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.css"/>
- 
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
@@ -93,7 +94,7 @@
                     </li>
                 @endif
 
-         
+
 
                 @if (request()->routeIs('location-manage'))
                     <li class="nav-item">
@@ -141,6 +142,28 @@
                 @endif
 
 
+                @if (request()->routeIs('staff_add'))
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('staff_add') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">เพิ่มผู้ดูแล</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('staff_add') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">เพิ่มผู้ดูแล</span>
+                        </a>
+                    </li>
+                @endif
+
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ฝ่ายสินทรัพย์</h6>
@@ -168,29 +191,31 @@
                     </li>
                 @endif
 
-              
 
-           
+
+
+
             </ul>
         </div>
         <div class="sidenav-footer mx-3 ">
             <div class="card card-plain shadow-none" id="sidenavCard">
-           
-            <div class="card-body text-center p-3 w-100 pt-9">
-            <div class="docs-info">
-            
-            
-            </div>
-            </div>
+
+                <div class="card-body text-center p-3 w-100 pt-9">
+                    <div class="docs-info">
+
+
+                    </div>
+                </div>
             </div>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-            <a class=" btn btn-primary btn-sm mb-0 w-100  " href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class=" btn btn-primary btn-sm mb-0 w-100  " href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
             this.closest('form').submit();">
-               ออกจากระบบ
-            </a>
-        </form>
-           
+                    ออกจากระบบ
+                </a>
+            </form>
+
         </div>
     </aside>
     <main class="main-content position-relative border-radius-lg ">
@@ -227,7 +252,7 @@
                         </ol>
                     @endif
 
-                    
+
                     {{-- navigation --}}
 
                 </nav>
@@ -291,13 +316,13 @@
                     <br>
                     <p>นาย พงศธร ลครชัย</p>
                     <p>สถานะ:ผู้ใช้ภายนอก</p>
-             
+
                 </div>
 
 
 
 
-              
+
 
 
 
@@ -368,9 +393,9 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/argon-dashboard.min.js?v=2.0.0"></script>
- 
+
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
-    
+
     @stack('js')
 </body>
 
