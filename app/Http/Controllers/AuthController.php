@@ -39,7 +39,8 @@ class AuthController extends Controller
                 $request->session()->put('id', $userInfo->id);
                 $request->session()->put('email', $data['email']);
 
-                return redirect('dashboard');
+                
+                return view('page.staff.routes.index');
 
             } else {
                 return back()->with('fail', 'Incorrect password');
