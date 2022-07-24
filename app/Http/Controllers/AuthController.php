@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
 
-   
     public function LoginView()
     {
         return view("test.test");
@@ -39,41 +38,14 @@ class AuthController extends Controller
                 $request->session()->put('id', $userInfo->id);
                 $request->session()->put('email', $data['email']);
 
-                
-                return view('page.staff.routes.index');
-
+                // return view('page.staff.routes.index');
+                return redirect()->route('staff-dashboard');
             } else {
                 return back()->with('fail', 'Incorrect password');
             }
         }
 
     }
-
-    // public function doLogin(Request $request)
-    // {
-
-    //     $validator = Validator::make($request->all(), [
-    //         'email' => 'required|email', // required and email format validation
-    //         'password' => 'required', // required and number field validation
-
-    //     ]); // create the validations
-    //     if ($validator->fails()) //check all validations are fine, if not then redirect and show error messages
-    //     {
-
-    //         return back()->withInput()->withErrors($validator);
-    //         // validation failed redirect back to form
-
-    //     } else {
-
-    //         //validations are passed try login using laravel auth attemp
-    //         if (Auth::attempt(['email' => $request['email'],
-    //             'password' => $request['password']])) {
-    //             return redirect("dashboard")->with('success', 'Login Successful');
-    //         } else {
-    //             return back()->withErrors("Invalid credentials"); // auth fail redirect with error
-    //         }
-    //     }
-    // }
 
     public function doRegister(Request $request)
     {
@@ -102,7 +74,7 @@ class AuthController extends Controller
     // show dashboard
     public function dashboard()
     {
-        return view("dashboard");
+        return view('page.staff.routes.index');
     }
 
     // logout method to clear the sesson of logged in user

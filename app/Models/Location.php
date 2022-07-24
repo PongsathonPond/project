@@ -23,4 +23,12 @@ class Location extends Model
 
     ];
     protected $primaryKey = 'location_id';
+
+    public function locationtoatten()
+    {
+
+        return $this->hasMany(Attention::class, 'location_id', 'location_id');
+
+    }
+
 }

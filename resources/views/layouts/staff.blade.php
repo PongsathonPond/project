@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     {{-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> --}}
     <title>
-        CMS
+        STAFF
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -45,12 +45,12 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ผู้ดูแลระบบ</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ผู้ดูแลสถานที่</h6>
                 </li>
 
-                @if (request()->routeIs('index'))
+                @if (request()->routeIs('staff-dashboard'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('index') }}">
+                        <a class="nav-link active" href="{{ route('staff-dashboard') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -62,7 +62,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('index') }}">
+                        <a class="nav-link " href="{{ route('staff-dashboard') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -72,70 +72,25 @@
                     </li>
                 @endif
 
-                @if (request()->routeIs('user-manage'))
+
+                @if (request()->routeIs('staff-request'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('user-manage') }}">
+                        <a class="nav-link active" href="{{ route('staff-request') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-users-cog text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">จัดการข้อมูลผู้ใช้</span>
-                        </a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user-manage') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-users-cog text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">จัดการข้อมูลผู้ใช้</span>
-                        </a>
-                    </li>
-                @endif
-
-
-
-                @if (request()->routeIs('location-manage'))
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('location-manage') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-map-marker-alt text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">จัดการข้อมูลห้อง</span>
-                        </a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('location-manage') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-map-marker-alt text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">จัดการข้อมูลห้อง</span>
-                        </a>
-                    </li>
-                @endif
-
-                {{session('email')}}
-
-                @if (request()->routeIs('request-manage'))
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('request-manage') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">จัดการคำขอ</span>
+
+
                         </a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('request-manage') }}">
+                        <a class="nav-link " href="{{ route('staff-request') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">จัดการคำขอ</span>
                         </a>
@@ -143,54 +98,11 @@
                 @endif
 
 
-                @if (request()->routeIs('staff_add'))
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('staff_add') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">เพิ่มผู้ดูแล</span>
-                        </a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('staff_add') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">เพิ่มผู้ดูแล</span>
-                        </a>
-                    </li>
-                @endif
 
 
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ฝ่ายสินทรัพย์</h6>
-                </li>
 
-                @if (request()->routeIs('request_vice'))
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('request_vice') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">จัดการคำขอ</span>
-                        </a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{ route('request_vice') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">จัดการคำขอ</span>
-                        </a>
-                    </li>
-                @endif
+
+
 
 
 
@@ -298,7 +210,7 @@
         <div class="container-fluid py-4">
 
 
-            @include('include.content')
+            @include('include.contentstaff')
 
 
         </div>
@@ -315,8 +227,9 @@
                 <div class="float-start">
                     <h5 class="mt-3 mb-0">ยินดีต้อนรับ</h5>
                     <br>
-                    <p>นาย พงศธร ลครชัย</p>
-                    <p>สถานะ:ผู้ใช้ภายนอก</p>
+                    <p> {{ session('email') }}
+                    </p>
+                    <p>สถานะ:ผู้ดูแลสถานที่</p>
 
                 </div>
 

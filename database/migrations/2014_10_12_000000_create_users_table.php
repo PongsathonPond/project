@@ -57,7 +57,7 @@ return new class extends Migration
         Schema::create('booking_lists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
-            $table->unsignedBigInteger('staff_id');
+            $table->unsignedBigInteger('staff_id')->unsigned()->nullable();;
             $table->unsignedBigInteger('location_id');
             $table->string('project_name');
             $table->string('agency');
@@ -76,6 +76,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('attentions', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('staff_id');
+            $table->unsignedBigInteger('location_id');
+
+            $table->foreign('location_id')->references('location_id')->on('locations');
+            $table->foreign('staff_id')->references('id')->on('staff');
+
+            $table->string('attention_name');
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -89,6 +101,6 @@ return new class extends Migration
         Schema::dropIfExists('booking_lists');
         Schema::dropIfExists('locations');
         Schema::dropIfExists('staff');
-
+        Schema::dropIfExists('attentions');
     }
 };

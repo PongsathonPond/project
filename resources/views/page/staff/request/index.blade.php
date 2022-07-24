@@ -1,14 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.staff')
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-<style type="text/css">
-    a[disabled="disabled"] {
-        pointer-events: none;
-        text-decoration: line-through;
-    }
-</style>
+
 @inject('thaiDateHelper', 'App\Services\ThaiDateHelperService')
 
-@section('content')
+@section('contentstaff')
 
     <div class="row">
         <div class="col-xl-12 order-xl-1">
@@ -50,8 +45,6 @@
                 </script>
             @endif
 
-
-
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h4>จัดการข้อมูลการจอง</h4>
@@ -81,26 +74,28 @@
                                     <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name">
                                         จัดการ</th>
                                     <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name" ">
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            @push('js')
+                                                                                                                            </th>
+                                                                                                                        </tr>
+                                                                                                                    </thead>
+                                                                                                                    @push('js')
         <tbody>
-                                                               
-                                                                    @foreach ($booking as
+                                                                                                                                                                                                               
+                                                                                                                                                                                                                      
+                                                                                                                                                                         
+                                                                                                                         
+                                                                       @foreach ($requeststaff as
                                             $item)
                                     <tr>
 
-                                        <td class="text-center align-middle">{{ $booking->firstItem() + $loop->index }}
+                                        <td class="text-center align-middle">{{ $requeststaff->firstItem() + $loop->index }}
                                         </td>
                                         <td class="text-center align-middle">
                                             {{ $item->project_name }}
                                         </td>
                                         <td class="text-center align-middle">
 
-                                            @foreach ($item->booktolocation as $item1)
-                                                {{ $item1->location_name }}
-                                            @endforeach
+
+                                            {{ $item->location_name }}
 
 
 
@@ -108,11 +103,9 @@
                                         </td>
                                         <td class="text-center align-middle">
 
-
-                                            @foreach ($item->booktouser as $item1)
-                                                {{ $item1->first_name }}
-                                                {{ $item1->last_name }}
-                                            @endforeach
+                                            {{ $item->title_name }}
+                                            {{ $item->first_name }}
+                                            {{ $item->last_name }}
                                         </td>
                                         <td class="text-center align-middle">
 
@@ -124,9 +117,9 @@
 
                                         <td class="text-center align-middle">
 
-                                            @if ($item->status_cost == 1)
+                                            @if ($item->status == 1)
                                                 <span class="badge badge-sm bg-success">อนุมัติเรียบร้อย</span>
-                                            @elseif($item->status_cost == 0)
+                                            @elseif($item->status == 0)
                                                 <span class="badge badge-sm bg-primary">รอการอนุมัติ</span>
                                             @else
                                                 <span class="badge badge-sm bg-danger">ไม่อนุมัติ</span>
@@ -166,13 +159,6 @@
                                                         </a>
                                                     </li>
 
-                                                    {{-- <li><a class="dropdown-item text-center" data-bs-toggle="modal"
-                                                            data-bs-target="#TestModal{{ $item->id }}" href="#"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="ส่งอีเมล์แจ้งเตือน"
-                                                            disabled="disabled">ส่งอีเมล์แจ้งเตือน
-                                                        </a>
-                                                    </li> --}}
 
                                                     <li><a class="dropdown-item text-center"
                                                             href="{{ url('/request/delete/' . $item->id) }} class="fas
@@ -202,8 +188,8 @@
                                                             <form action="{{ route('addlist') }}" method="post">
                                                                 @csrf
 
-                                                                <input type="text" class="form-control" name="email"
-                                                                    value=@foreach ($item->booktouser as $item1) {{ $item1->email }} @endforeach>
+                                                                {{-- <input type="text" class="form-control" name="email"
+                                                                    value=@foreach ($item->booktouser as $item1) {{ $item1->email }} @endforeach> --}}
                                                                 <input type="text" class="form-control" name="content">
 
                                                                 <input type="submit" value="เพิ่ม" class="btn btn-success "
@@ -244,31 +230,23 @@
                                                         <div class="modal-body">
 
 
-                                                            <form
-                                                                action="{{ url('/request/vice_admin/update/' . $item->id) }}"
+                                                            <form action="{{ url('/request_staff/update/' . $item->id) }}"
                                                                 method="post" enctype="multipart/form-data">
                                                                 @csrf
 
                                                                 <div class="pl-lg-4">
                                                                     <div class="row" style="text-align: left">
 
-
-
-
-
-
-
-
                                                                         <div class="col-lg-12">
                                                                             <div class="form-group">
                                                                                 <label class="form-control-label"
-                                                                                    for="status_cost">
+                                                                                    for="status">
 
                                                                                     <span
                                                                                         class="badge badge-pill bg-gradient-primary"></span>
                                                                                 </label>
                                                                                 <select type="text " class="form-control"
-                                                                                    name="status_cost">
+                                                                                    name="status">
 
                                                                                     <option value="0">
                                                                                         เลือกสถานะ</option>
@@ -283,10 +261,10 @@
 
                                                                                 <br>
                                                                                 สถานะปัจจุบัน:
-                                                                                @if ($item->status_cost == 0)
+                                                                                @if ($item->status == 0)
                                                                                     <span
                                                                                         class="badge bg-primary">รอการอนุมัติ</span>
-                                                                                @elseif($item->status_cost == 1)
+                                                                                @elseif($item->status == 1)
                                                                                     <span
                                                                                         class="badge bg-success">อนุมัติเรียบร้อย</span>
                                                                                 @else
@@ -358,7 +336,7 @@
 
                 </div>
 
-                {{ $booking->links() }}
+                {{-- {{ $booking->links() }} --}}
 
             </div>
 

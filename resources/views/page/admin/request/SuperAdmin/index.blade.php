@@ -112,7 +112,7 @@
                                         </td>
                                         <td class="text-center align-middle">
 
-
+                                            
                                             @foreach ($item->booktouser as $item1)
                                                 {{ $item1->first_name }}
                                                 {{ $item1->last_name }}

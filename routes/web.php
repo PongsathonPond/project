@@ -66,7 +66,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //vice_admin จัดการคำขอ
     Route::get('/request/vice_admin', [Vice_RequestController::class, 'index'])->name('request_vice');
-
+    Route::post('/request/vice_admin/update/{id}', [Vice_RequestController::class, 'update']);
     //user_out คำขอของฉัน
     Route::get('/request/user', [User_RequestController::class, 'index'])->name('request_user');
     Route::get('/request/detail/{id}', [User_RequestController::class, 'detail']);
@@ -75,11 +75,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/manage/staff', [StaffController::class, 'index'])->name('staff_add');
     Route::get('/manage/delete/{id}', [StaffController::class, 'delete']);
+    Route::post('/manage/addrole', [StaffController::class, 'store'])->name('addrole_staff');
+    Route::get('/manage/deleteatten/{id}', [StaffController::class, 'deleteatten']);
 
 });
 
+// login staff
 Route::get('/staff_login', [AuthController::class, "LoginView"])->name('stafflogin');
 Route::post('/do-login', [AuthController::class, "doLogin"]);
 Route::post('/do-register', [AuthController::class, "doRegister"]);
-Route::get('/dashboard', [AuthController::class, "dashboard"]);
+Route::get('/dashboard', [AuthController::class, "dashboard"])->name('staff-dashboard');
 Route::get('/logout', [AuthController::class, "logout"]);
+
+//จัดการคำขอ
+
+Route::get('/request_staff', [StaffController::class, 'requeststaff'])->name('staff-request');
+Route::post('/request_staff/update/{id}', [StaffController::class, 'update']);

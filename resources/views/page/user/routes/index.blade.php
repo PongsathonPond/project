@@ -25,7 +25,6 @@
         height: 70vh;
 
     }
-
 </style>
 
 </html>
@@ -107,6 +106,9 @@
                 editable: true,
                 selectable: true,
                 selectHelper: true,
+
+                eventLimit: 5, // for all non-agenda views
+
                 timezone: 'Asia/Bangkok',
                 defaultDate: new Date(),
                 contentHeight: 600,
