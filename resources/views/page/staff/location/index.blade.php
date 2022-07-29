@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.staff')
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 <style type="text/css">
     a[disabled="disabled"] {
@@ -8,7 +8,7 @@
 </style>
 @inject('thaiDateHelper', 'App\Services\ThaiDateHelperService')
 
-@section('content')
+@section('contentstaff')
 
     <div class="row">
         <div class="col-xl-12 order-xl-1">
@@ -66,110 +66,82 @@
                                 <tr>
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         ลำดับ</th>
-                                    <th class="font-weight-bolder text-center text-xs" data-sort="name">
-                                        ชื่อรายการจอง</th>
+                                     <th class="text-left text-xs font-weight-bolder" data-sort="name">
+                                            รูป</th>
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         ห้อง</th>
-                                    {{-- <th class="font-weight-bolder text-center text-xs" data-sort="name">
-                                        ชื่อผู้จอง</th> --}}
-
-                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
-                                            ราคา</th>
-    
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
-                                        เวลาเริ่มต้น-สิ้นสุด</th>
+                                        ความจุ</th>
+                                
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         สถานะ</th>
 
                                     <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name">
                                         จัดการ</th>
-                                    <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name" ">
+                                        
+                                    
                                                     </th>
                                                 </tr>
                                             </thead>
                                             @push('js')
-        <tbody>
-                                                               
-                                                                    @foreach ($booking as
-                                            $item)
+                                          <tbody>
+                                          @foreach ($locationstaff as $item)
+                                                       
+                                     
                                     <tr>
 
-                                        <td class="text-center align-middle">{{ $booking->firstItem() + $loop->index }}
+                                        <td class="text-center align-middle">
+                                          
+                                            {{ $locationstaff->firstItem() + $loop->index }} 
+                                        </td>
+                                          
+                                        <td class="align-middle text-center">
+
+                                            <img src="{{ asset($item->location_image) }}"
+                                                alt="" width="60vh" height="60vh">
+
+
+                                      
                                         </td>
                                         <td class="text-center align-middle">
-                                            {{ $item->project_name }}
+
+                                            {{$item->location_name}}
                                         </td>
-                                        <td class="text-center align-middle">
-
-                                            @foreach ($item->booktolocation as $item1)
-                                                {{ $item1->location_name }}
-                                            @endforeach
-
-
-
-
-                                        </td>
-                                        {{-- <td class="text-center align-middle">
-
-
-                                            @foreach ($item->booktouser as $item1)
-                                                {{ $item1->first_name }}
-                                                {{ $item1->last_name }}
-                                            @endforeach
-                                        </td> --}}
+                                    
 
                                         <td class="text-center align-middle">
-
-                                                @if ($item->project_cost == 'nil')
-                                                <span class="badge badge-sm bg-danger">ยังไม่ผ่านการประเมิน</span>
-                                                @else
-                                                 {{$item->project_cost}} บาท 
-                                                @endif
+                                            {{$item->accommodate_people}}
+                                             
                                           
                                         </td>
 
                                         
 
                                         <td class="text-center align-middle">
-
-                                            {{ $thaiDateHelper->simpleDateFormat($item->start) }}
-                                            -
-                                            {{ $thaiDateHelper->simpleDateFormat($item->end) }}
-
+                                                test
+                                            
                                         </td>
 
-                                        <td class="text-center align-middle">
-
-                                            @if ($item->status_cost == 1)
-                                                <span class="badge badge-sm bg-success">อนุมัติเรียบร้อย</span>
-                                            @elseif($item->status_cost == 0)
-                                                <span class="badge badge-sm bg-primary">รอการอนุมัติ</span>
-                                            @else
-                                                <span class="badge badge-sm bg-danger">ไม่อนุมัติ</span>
-                                            @endif
-                                        </td>
-
-                                        </td>
+                                   
+                                         
+                                     
 
 
 
-                                        <td>
-                                            <div class="dropdown text-right">
+                                        <td >
+                                            <div class="dropdown text-center">
                                                 <button class="btn bg-gradient-primary dropdown-toggle fas fa-edit"
                                                     type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
                                                     aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="top"
                                                     title="จัดการข้อมูล" data-container="body" data-animation="true">
 
                                                 </button>
+
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <li><a class="dropdown-item text-center"
-                                                            href="{{ asset($item->file_document) }}" target=" _blank"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="เอกสารบันทึกข้อความ">เอกสารบันทึกข้อความ</a>
-                                                    </li>
+                                                 
 
                                                     <li><a class="dropdown-item text-center" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal{{ $item->id }}" href="#"
+                                                            data-bs-target="#exampleModal" href="#"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             title="จัดการคำขอ">จัดการคำขอ
                                                         </a>
@@ -184,7 +156,7 @@
 
 
                                             <!-- ModalEditUser -->
-                                            <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
@@ -201,7 +173,8 @@
 
 
                                                             <form
-                                                                action="{{ url('/request/vice_admin/update/' . $item->id) }}"
+                                                                {{-- action="{{ url('/request/vice_admin/update/' . $item->id) }}"
+                                                                --}}
                                                                 method="post" enctype="multipart/form-data">
                                                                 @csrf
 
@@ -214,7 +187,7 @@
 
     <div class="form-group">
         <label>ราคา</label>
-        <input type="text" name="project_cost" value="{{$item->project_cost}}" class="form-control" />
+        <input type="text" name="project_cost" value="" class="form-control" />
 
     </div>
 </div>
@@ -245,42 +218,7 @@
 
 
 <br><br>
-                                                                        <div class="test">
-                                                                           
-                                                                            ราคาปัจจุบัน:
-                                                                             @if ($item->project_cost == 'nil')
-                                                                            <span
-                                                                                class="badge bg-danger">รอการประเมิน</span>
-                                                                        @elseif($item->project_cost >1)
-                                                                            <span
-                                                                                class="badge bg-success">{{$item->project_cost}} บาท</span>
-                                                                        @else
-                                                                            <span
-                                                                                class="badge bg-success"> 0 บาท</span>
-                                                                        @endif
-
-                                                                        </div>
-
-                                                                        <br>
-
-                                                          
-                                                                        <br>
-                                                                        
-                                                                        <div class="test">
-                                                                           
-                                                                            สถานะปัจจุบัน:
-                                                                             @if ($item->status_cost == 0)
-                                                                            <span
-                                                                                class="badge bg-primary">รอการอนุมัติ</span>
-                                                                        @elseif($item->status_cost == 1)
-                                                                            <span
-                                                                                class="badge bg-success">อนุมัติเรียบร้อย</span>
-                                                                        @else
-                                                                            <span
-                                                                                class="badge bg-danger">ไม่อนุมัติ</span>
-                                                                        @endif
-
-                                                                        </div>
+                                                                     
                                                                       
                                                       
                                                                         
@@ -331,12 +269,11 @@
                                             <!-- EndModal -->
 
                                         </td>
-                                        <td>
-
-                                        </td>
+                                      
+                                      
 
                                     </tr>
-                                    @endforeach
+                                    @endforeach  
                                     </tbody>
                             </table>
 
@@ -347,8 +284,7 @@
 
                 </div>
 
-                {{ $booking->links() }}
-
+              
             </div>
 
 

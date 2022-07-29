@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class UserManageSuperAdmin extends Controller
@@ -10,7 +12,8 @@ class UserManageSuperAdmin extends Controller
     public function index()
     {
         $users = User::all();
-        return view('page.admin.usermanage.index', compact('users'));
+        $admin = Admin::all();
+        return view('page.admin.usermanage.index', compact('users','admin'));
     }
 
     public function update(Request $request, $id)

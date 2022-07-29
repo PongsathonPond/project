@@ -65,7 +65,7 @@ return new class extends Migration
             $table->string('start');
             $table->string('end');
             $table->string('file_document');
-            $table->string('project_cost')->default(0);
+            $table->string('project_cost')->default('nil');
             $table->string('status')->default(0);
             $table->string('title')->default(0);
             $table->string('status_email')->default(0);
@@ -88,6 +88,18 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+
+
+        Schema::create('admins', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('role')->default(0);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -97,6 +109,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('admins');
         Schema::dropIfExists('users');
         Schema::dropIfExists('booking_lists');
         Schema::dropIfExists('locations');

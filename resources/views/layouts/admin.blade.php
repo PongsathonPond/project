@@ -48,9 +48,9 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ผู้ดูแลระบบ</h6>
                 </li>
 
-                @if (request()->routeIs('index'))
+                @if (request()->routeIs('admin-dashboard'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('index') }}">
+                        <a class="nav-link active" href="{{ route('admin-dashboard') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -62,7 +62,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('index') }}">
+                        <a class="nav-link " href="{{ route('admin-dashboard') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -176,7 +176,7 @@
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">จัดการคำขอ</span>
+                            <span class="nav-link-text ms-1">ประเมินราคา</span>
                         </a>
                     </li>
                 @else
@@ -186,7 +186,7 @@
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">จัดการคำขอ</span>
+                            <span class="nav-link-text ms-1">ประเมินราคา</span>
                         </a>
                     </li>
                 @endif
@@ -314,8 +314,9 @@
                 <div class="float-start">
                     <h5 class="mt-3 mb-0">ยินดีต้อนรับ</h5>
                     <br>
-                    <p>นาย พงศธร ลครชัย</p>
-                    <p>สถานะ:ผู้ใช้ภายนอก</p>
+                    <p> {{ session('first_name') }} {{ session('last_name') }}</p>
+                       
+                    <p>สถานะ:ผู้ดูแลระบบ</p>
 
                 </div>
 

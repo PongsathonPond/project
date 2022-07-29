@@ -47,7 +47,7 @@
 
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h4>จัดการข้อมูลการจอง</h4>
+                    <h4>จัดการห้องที่รับผิดชอบ</h4>
                 </div>
                 <br>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -126,12 +126,11 @@
                                             @endif
                                         </td>
 
-                                        </td>
-
+                                     
 
 
                                         <td>
-                                            <div class="dropdown text-right">
+                                            <div class="dropdown text-center">
                                                 <button class="btn bg-gradient-primary dropdown-toggle fas fa-edit"
                                                     type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
                                                     aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="top"

@@ -20,17 +20,21 @@ class Vice_RequestController extends Controller
         $request->validate([
 
             'status_cost' => 'required',
-
+            
         ],
 
-            ['status_cost.required' => "กรุณาใส่สถานะ",
-
+            [
+            
+            'status_cost.required' => "กรุณาใส่สถานะ",
+          
             ]
         );
+
         BookingList::find($id)->update([
 
             'status_cost' => $request->status_cost,
-
+            'project_cost' => $request->project_cost,
+            
         ]);
 
         return redirect()->back()->with('update', "อัพเดตข้อมูลเรียบร้อย");

@@ -29,7 +29,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <div class="min-height-300 bg-dark position-absolute w-100"></div>
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
@@ -99,9 +99,32 @@
 
 
 
+                @if (request()->routeIs('staff-location'))
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('staff-location') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">จัดการสถานที่</span>
 
 
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('staff-location') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">จักการสถานที่</span>
+                        </a>
+                    </li>
+                @endif
 
+
+               
 
 
 
@@ -122,7 +145,7 @@
             </div>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <a class=" btn btn-primary btn-sm mb-0 w-100  " href="{{ route('logout') }}"
+                <a class=" btn btn-dark btn-sm mb-0 w-100  " href="{{ route('logout') }}"
                     onclick="event.preventDefault();
             this.closest('form').submit();">
                     ออกจากระบบ

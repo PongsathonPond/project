@@ -11,6 +11,8 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserManageSuperAdmin;
 use App\Http\Controllers\user_out\User_RequestController;
 use App\Http\Controllers\vice_admin\Vice_RequestController;
+use App\Http\Controllers\loginAdmin\AuthAdminController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,16 +33,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //เปลี่ยนหน้า
     Route::get('/index', [RouteController::class, 'index'])->name('index');
-    //จัดการข้อมูลผู้ใช้
-    Route::get('/usermanage', [UserManageSuperAdmin::class, 'index'])->name('user-manage');
-    Route::post('/usermanage/update/{id}', [UserManageSuperAdmin::class, 'update']);
-    Route::get('/usermanage/delete/{id}', [UserManageSuperAdmin::class, 'delete']);
-
-    //จัดการห้อง
-    Route::get('/locationmanage/', [LocaiotnManageSuperAdmin::class, 'index'])->name('location-manage');
-    Route::post('/locationmanage/add', [LocaiotnManageSuperAdmin::class, 'store'])->name('location-manage-add');
-    Route::get('/locationmanage/delete/{id}', [LocaiotnManageSuperAdmin::class, 'delete']);
-    Route::post('/locationmanage/update/{id}', [LocaiotnManageSuperAdmin::class, 'update']);
 
     //user ภายนอกส่ง data
     Route::get('/addbooking/', [AddBookingUserout::class, 'index'])->name('add-booking');
@@ -53,15 +45,55 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
     Route::resource('/booking', FullCalenderController::class);
 
+
+});
+
+// login staff
+Route::get('/staff_login', [AuthController::class, "LoginView"])->name('stafflogin');
+Route::post('/do-login', [AuthController::class, "doLogin"]);
+Route::post('/do-register', [AuthController::class, "doRegister"]);
+Route::get('/dashboard', [AuthController::class, "dashboard"])->name('staff-dashboard');
+Route::get('/logout', [AuthController::class, "logout"]);
+
+//จัดการคำขอ
+
+Route::get('/request_staff', [StaffController::class, 'requeststaff'])->name('staff-request');
+Route::post('/request_staff/update/{id}', [StaffController::class, 'update']);
+Route::get('/location_staff', [StaffController::class, "location"])->name('staff-location');
+
+
+
+
+
+//adminlogin
+
+// admin staff
+Route::get('/admin_login', [AuthAdminController::class, "LoginView"])->name('adminlogin');
+Route::post('/admin-do-login', [AuthAdminController::class, "doLogin"]);
+Route::post('/admin-do-register', [AuthAdminController::class, "doRegister"]);
+Route::get('/admin_dashboard', [AuthAdminController::class, "dashboard"])->name('admin-dashboard');
+Route::get('/admin_logout', [AuthAdminController::class, "logout"]);
+
+//จััดการ  user
+Route::get('/usermanage', [UserManageSuperAdmin::class, 'index'])->name('user-manage');
+Route::post('/usermanage/update/{id}', [UserManageSuperAdmin::class, 'update']);
+Route::get('/usermanage/delete/{id}', [UserManageSuperAdmin::class, 'delete']);
+
+//จัดการห้อง
+Route::get('/locationmanage/', [LocaiotnManageSuperAdmin::class, 'index'])->name('location-manage');
+Route::post('/locationmanage/add', [LocaiotnManageSuperAdmin::class, 'store'])->name('location-manage-add');
+Route::get('/locationmanage/delete/{id}', [LocaiotnManageSuperAdmin::class, 'delete']);
+Route::post('/locationmanage/update/{id}', [LocaiotnManageSuperAdmin::class, 'update']);
+
     //admin จัดการคำขอ
     Route::get('/request/superadmin', [RequestController::class, 'index'])->name('request-manage');
     Route::post('/request/update/{id}', [RequestController::class, 'update']);
     Route::get('/request/delete/{id}', [RequestController::class, 'delete']);
 
     //sendemail
-
     Route::post('/sendmail', [EmailController::class, 'sendEmail'])->name('addlist');
-
+    
+    
     //vice_admin
 
     //vice_admin จัดการคำขอ
@@ -77,17 +109,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/manage/delete/{id}', [StaffController::class, 'delete']);
     Route::post('/manage/addrole', [StaffController::class, 'store'])->name('addrole_staff');
     Route::get('/manage/deleteatten/{id}', [StaffController::class, 'deleteatten']);
-
-});
-
-// login staff
-Route::get('/staff_login', [AuthController::class, "LoginView"])->name('stafflogin');
-Route::post('/do-login', [AuthController::class, "doLogin"]);
-Route::post('/do-register', [AuthController::class, "doRegister"]);
-Route::get('/dashboard', [AuthController::class, "dashboard"])->name('staff-dashboard');
-Route::get('/logout', [AuthController::class, "logout"]);
-
-//จัดการคำขอ
-
-Route::get('/request_staff', [StaffController::class, 'requeststaff'])->name('staff-request');
-Route::post('/request_staff/update/{id}', [StaffController::class, 'update']);

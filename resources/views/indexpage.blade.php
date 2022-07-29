@@ -54,6 +54,11 @@
                         title="สำหรับผู้ดูแลสถานที่">
                         <i class="fas fa-user-cog"></i>
                     </a>
+
+                    <a href="{{ route('adminlogin') }}" class="social-icon" data-toggle="tooltip"
+                    title="สำหรับผู้ดูแลระบบ">
+                    <i class="fas fa-user-cog"></i>
+                </a>
                 </div>
                 </form>
                 <form action="#" class="sign-up-form">

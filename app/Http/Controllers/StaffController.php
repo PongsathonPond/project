@@ -52,6 +52,7 @@ class StaffController extends Controller
             ->paginate(3);
 
         return view('page.staff.request.index', compact('requeststaff'));
+   
     }
 
     public function store(Request $request)
@@ -102,6 +103,31 @@ class StaffController extends Controller
 
         return redirect()->back()->with('update', "อัพเดตข้อมูลเรียบร้อย");
         // return redirect()->route('usermanager')->with('success',"อัพเดตข้อมูลเรียบร้อย");
+    }
+
+    public function location(Request $request)
+    {
+
+
+     $locationstaff = DB::table('locations')
+
+
+     ->join('attentions', 'locations.location_id', 'attentions.location_id')
+     ->join('staff', 'staff.id', 'attentions.staff_id')
+     ->where('staff.id', '=', session('id'))
+     ->select('locations.*', 'attentions.*','staff.email')
+     ->paginate(3);
+
+
+      
+       return view('page.staff.location.index', compact('locationstaff'));
+   
+   
+
+
+        
+
+    
     }
 
 }
