@@ -73,9 +73,9 @@
                                     {{-- <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         ชื่อผู้จอง</th> --}}
 
-                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
-                                            ราคา</th>
-    
+                                    <th class="font-weight-bolder text-center text-xs" data-sort="name">
+                                        ราคา</th>
+
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         เวลาเริ่มต้น-สิ้นสุด</th>
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
@@ -84,14 +84,14 @@
                                     <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name">
                                         จัดการ</th>
                                     <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name" ">
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            @push('js')
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        @push('js')
         <tbody>
-                                                               
-                                                                    @foreach ($booking as
-                                            $item)
+                                                                                       
+                                                                                              
+                                            @foreach ($booking as $item)
                                     <tr>
 
                                         <td class="text-center align-middle">{{ $booking->firstItem() + $loop->index }}
@@ -120,15 +120,15 @@
 
                                         <td class="text-center align-middle">
 
-                                                @if ($item->project_cost == 'nil')
+                                            @if ($item->project_cost == 'nil')
                                                 <span class="badge badge-sm bg-danger">ยังไม่ผ่านการประเมิน</span>
-                                                @else
-                                                 {{$item->project_cost}} บาท 
-                                                @endif
-                                          
+                                            @else
+                                                {{ $item->project_cost }} บาท
+                                            @endif
+
                                         </td>
 
-                                        
+
 
                                         <td class="text-center align-middle">
 
@@ -176,8 +176,8 @@
                                                     </li>
 
 
-                                            
-                                               
+
+
                                             </div>
 
 
@@ -200,8 +200,7 @@
                                                         <div class="modal-body">
 
 
-                                                            <form
-                                                                action="{{ url('/request/vice_admin/update/' . $item->id) }}"
+                                                            <form action="{{ url('/request/vice_admin/update/' . $item->id) }}"
                                                                 method="post" enctype="multipart/form-data">
                                                                 @csrf
 
@@ -210,14 +209,23 @@
 
 
 
-<div class="col-6">
+                                                                        <div class="col-6">
 
-    <div class="form-group">
-        <label>ราคา</label>
-        <input type="text" name="project_cost" value="{{$item->project_cost}}" class="form-control" />
+                                                                            <div class="form-group">
+                                                                                <label>ราคา</label>
 
-    </div>
-</div>
+                                                                                @if ($item->project_cost == 'nil')
+                                                                                    <input type="text" name="project_cost"
+                                                                                        value="0" class="form-control" />
+                                                                                @else
+                                                                                    <input type="text" name="project_cost"
+                                                                                        value="{{ $item->project_cost }}"
+                                                                                        class="form-control" />
+                                                                                @endif
+
+
+                                                                            </div>
+                                                                        </div>
 
 
 
@@ -239,51 +247,50 @@
 
                                                                                 </select>
 
-                                                                              
+
                                                                             </div>
                                                                         </div>
 
 
-<br><br>
+                                                                        <br><br>
                                                                         <div class="test">
-                                                                           
+
                                                                             ราคาปัจจุบัน:
-                                                                             @if ($item->project_cost == 'nil')
-                                                                            <span
-                                                                                class="badge bg-danger">รอการประเมิน</span>
-                                                                        @elseif($item->project_cost >1)
-                                                                            <span
-                                                                                class="badge bg-success">{{$item->project_cost}} บาท</span>
-                                                                        @else
-                                                                            <span
-                                                                                class="badge bg-success"> 0 บาท</span>
-                                                                        @endif
+                                                                            @if ($item->project_cost == 'nil')
+                                                                                <span
+                                                                                    class="badge bg-danger">รอการประเมิน</span>
+                                                                            @elseif($item->project_cost > 1)
+                                                                                <span
+                                                                                    class="badge bg-success">{{ $item->project_cost }}
+                                                                                    บาท</span>
+                                                                            @else
+                                                                                <span class="badge bg-success"> 0 บาท</span>
+                                                                            @endif
 
                                                                         </div>
 
                                                                         <br>
 
-                                                          
+
                                                                         <br>
-                                                                        
+
                                                                         <div class="test">
-                                                                           
+
                                                                             สถานะปัจจุบัน:
-                                                                             @if ($item->status_cost == 0)
-                                                                            <span
-                                                                                class="badge bg-primary">รอการอนุมัติ</span>
-                                                                        @elseif($item->status_cost == 1)
-                                                                            <span
-                                                                                class="badge bg-success">อนุมัติเรียบร้อย</span>
-                                                                        @else
-                                                                            <span
-                                                                                class="badge bg-danger">ไม่อนุมัติ</span>
-                                                                        @endif
+                                                                            @if ($item->status_cost == 0)
+                                                                                <span
+                                                                                    class="badge bg-primary">รอการอนุมัติ</span>
+                                                                            @elseif($item->status_cost == 1)
+                                                                                <span
+                                                                                    class="badge bg-success">อนุมัติเรียบร้อย</span>
+                                                                            @else
+                                                                                <span class="badge bg-danger">ไม่อนุมัติ</span>
+                                                                            @endif
 
                                                                         </div>
-                                                                      
-                                                      
-                                                                        
+
+
+
 
                                                                     </div>
 

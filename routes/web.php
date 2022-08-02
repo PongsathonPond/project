@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\AddBookingAdmin;
 use App\Http\Controllers\AddBookingUserout;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FullCalenderController;
+use App\Http\Controllers\HistoryAdmin;
 use App\Http\Controllers\LocaiotnManageSuperAdmin;
+use App\Http\Controllers\loginAdmin\AuthAdminController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserManageSuperAdmin;
 use App\Http\Controllers\user_out\User_RequestController;
 use App\Http\Controllers\vice_admin\Vice_RequestController;
-use App\Http\Controllers\loginAdmin\AuthAdminController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,8 +46,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
     Route::resource('/booking', FullCalenderController::class);
 
-
 });
+
+/////staff///////////////////////////////////////////////////////////////////////////
 
 // login staff
 Route::get('/staff_login', [AuthController::class, "LoginView"])->name('stafflogin');
@@ -61,13 +63,13 @@ Route::get('/request_staff', [StaffController::class, 'requeststaff'])->name('st
 Route::post('/request_staff/update/{id}', [StaffController::class, 'update']);
 Route::get('/location_staff', [StaffController::class, "location"])->name('staff-location');
 
+/////staff///////////////////////////////////////////////////////////////////////////
 
-
-
+/////admin///////////////////////////////////////////////////////////////////////////
 
 //adminlogin
 
-// admin staff
+// admin
 Route::get('/admin_login', [AuthAdminController::class, "LoginView"])->name('adminlogin');
 Route::post('/admin-do-login', [AuthAdminController::class, "doLogin"]);
 Route::post('/admin-do-register', [AuthAdminController::class, "doRegister"]);
@@ -85,27 +87,38 @@ Route::post('/locationmanage/add', [LocaiotnManageSuperAdmin::class, 'store'])->
 Route::get('/locationmanage/delete/{id}', [LocaiotnManageSuperAdmin::class, 'delete']);
 Route::post('/locationmanage/update/{id}', [LocaiotnManageSuperAdmin::class, 'update']);
 
-    //admin จัดการคำขอ
-    Route::get('/request/superadmin', [RequestController::class, 'index'])->name('request-manage');
-    Route::post('/request/update/{id}', [RequestController::class, 'update']);
-    Route::get('/request/delete/{id}', [RequestController::class, 'delete']);
+//admin จัดการคำขอ
+Route::get('/request/superadmin', [RequestController::class, 'index'])->name('request-manage');
+Route::post('/request/update/{id}', [RequestController::class, 'update']);
+Route::get('/request/delete/{id}', [RequestController::class, 'delete']);
+Route::post('/request/updatereq/{id}', [RequestController::class, 'updatereq'])->name('updatereq');
+//sendemail
+Route::post('/sendmail', [EmailController::class, 'sendEmail'])->name('addlist');
 
-    //sendemail
-    Route::post('/sendmail', [EmailController::class, 'sendEmail'])->name('addlist');
-    
-    
-    //vice_admin
+//vice_admin
 
-    //vice_admin จัดการคำขอ
-    Route::get('/request/vice_admin', [Vice_RequestController::class, 'index'])->name('request_vice');
-    Route::post('/request/vice_admin/update/{id}', [Vice_RequestController::class, 'update']);
-    //user_out คำขอของฉัน
-    Route::get('/request/user', [User_RequestController::class, 'index'])->name('request_user');
-    Route::get('/request/detail/{id}', [User_RequestController::class, 'detail']);
+//vice_admin จัดการคำขอ
+Route::get('/request/vice_admin', [Vice_RequestController::class, 'index'])->name('request_vice');
+Route::post('/request/vice_admin/update/{id}', [Vice_RequestController::class, 'update']);
+//user_out คำขอของฉัน
+Route::get('/request/user', [User_RequestController::class, 'index'])->name('request_user');
+Route::get('/request/detail/{id}', [User_RequestController::class, 'detail']);
 
-    //staff เพิ่มผู้ดูแลระบบ
+//staff เพิ่มผู้ดูแลระบบ
 
-    Route::get('/manage/staff', [StaffController::class, 'index'])->name('staff_add');
-    Route::get('/manage/delete/{id}', [StaffController::class, 'delete']);
-    Route::post('/manage/addrole', [StaffController::class, 'store'])->name('addrole_staff');
-    Route::get('/manage/deleteatten/{id}', [StaffController::class, 'deleteatten']);
+Route::get('/manage/staff', [StaffController::class, 'index'])->name('staff_add');
+Route::get('/manage/delete/{id}', [StaffController::class, 'delete']);
+Route::post('/manage/addrole', [StaffController::class, 'store'])->name('addrole_staff');
+Route::get('/manage/deleteatten/{id}', [StaffController::class, 'deleteatten']);
+
+Route::get('/manage/history', [HistoryAdmin::class, 'index'])->name('history_index');
+Route::get('/manage/historyreq', [HistoryAdmin::class, 'index2'])->name('history_req');
+
+//เพิ่มการจอง admin
+
+Route::get('/addbookingadmin/', [AddBookingAdmin::class, 'index'])->name('add-bookingadmin');
+Route::get('/addbookingadmin/{id}', [AddBookingAdmin::class, 'edit']);
+Route::post('/addbookingadmin/add', [AddBookingAdmin::class, 'store'])->name('booking-addadmin');
+Route::get('fullcalenderadmin/{id}', [AddBookingAdmin::class, 'index2']);
+
+/////admin///////////////////////////////////////////////////////////////////////////

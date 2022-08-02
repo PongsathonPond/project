@@ -16,6 +16,30 @@
                         icon: 'success',
                         title: 'โหลดข้อมูลเรียบร้อย',
                         showConfirmButton: false,
+                        timer: 2500
+                    })
+                </script>
+            @endif
+
+            @if (session('delete'))
+                <script>
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'ลบข้อมูลเรียบร้อย',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                </script>
+            @endif
+
+            @if (session('update'))
+                <script>
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'อัพเดทข้อมูลเรียบร้อย',
+                        showConfirmButton: false,
                         timer: 1500
                     })
                 </script>
@@ -96,68 +120,190 @@
 
 
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="fas fa-edit fa-lg btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
 
-                                            </button>
+                                            @if ($item->id == 1)
+                                                <button type="button" class="fas fa-edit fa-lg btn btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#TestReq{{ $item->id }}"
+                                                    disabled>
+
+                                                </button>
+                                            @else
+                                                <button type="button" class="fas fa-edit fa-lg btn btn-primary"
+                                                    data-bs-toggle="modal" data-bs-target="#TestReq{{ $item->id }}">
+
+                                                </button>
+                                            @endif
 
 
-                                            <a href="" class="fas fa-trash-alt fa-lg btn btn-danger"
-                                                onclick="return confirm('ลบหรือไม่ ?')"> </a>
-
+                                            @if ($item->id == 1)
+                                                <a href="" class="fas fa-trash-alt fa-lg btn btn-danger"
+                                                    onclick="testdelete();"> </a>
+                                            @else
+                                                <a href="" class="fas fa-trash-alt fa-lg btn btn-danger"
+                                                    onclick="return confirm('ยกเลิกการจอง ?')"> </a>
+                                            @endif
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalSignTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                            <!-- ModalReq -->
+                                            <div class="modal fade" id="TestReq{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
-
-                                                        <div class="modal-body p-0  ">
-                                                            <div class="card card-plain">
-                                                                <div class="card-header pb-0 text-left">
-                                                                    <h3
-                                                                        class="font-weight-bolder text-primary text-gradient">
-                                                                        แก้ไขข้อมูล</h3>
-
-                                                                </div>
-                                                                <div class="card-body pb-6 ">
-
-
-
-
-                                                                </div>
-
-                                                            </div>
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                แก้ไขรายละเอียดการจอง</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ url('/request/updatereq/' . $item->id) }}"
+                                                                method="post">
+                                                                @csrf
+
+                                                                <div class="row" style="text-align: left">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group">
+                                                                            <label class="form-control-label"
+                                                                                for="location_id">ห้อง
+                                                                            </label>
+                                                                            <select type="text " class="form-control "
+                                                                                name="location_id">
+
+                                                                                <option value="{{ $item->location_id }}">
+                                                                                    เลือกประเภท</option>
+
+                                                                                @foreach ($location as $item1)
+                                                                                    <option
+                                                                                        value="{{ $item1->location_id }}">
+                                                                                        {{ $item1->location_name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class=" col-lg-5">
+                                                                        <div class="form-group">
+                                                                            <label class="form-control-label"
+                                                                                for="project_name">ชื่อรายการจอง
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="project_name"
+                                                                                value="{{ $item->project_name }}">
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="example-datetime-local-input"
+                                                                                class="form-control-label">เวลาเริ่มต้น</label>
+                                                                            <input class="form-control"
+                                                                                type="datetime-local" name="start"
+                                                                                value="{{ $item->start }}"
+                                                                                id="example-datetime-local-input">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="example-datetime-local-input"
+                                                                                class="form-control-label">เวลาสิ้นสุด</label>
+                                                                            <input class="form-control"
+                                                                                type="datetime-local" name="end"
+                                                                                value="{{ $item->end }}"
+                                                                                id="example-datetime-local-input">
+                                                                        </div>
+                                                                    </div>
+
+
+
+
+
+
+
+
+
+
+                                                                </div>
+
+
+
+                                                                @error('name')
+                                                                    <div class="my-2">
+                                                                        <span class="text-danger my-2">
+                                                                            {{ $message }}
+                                                                        </span>
+                                                                    </div>
+                                                                @enderror
+
+                                                                @error('email')
+                                                                    <div class="my-2">
+                                                                        <span class="text-danger my-2">
+                                                                            {{ $message }}
+                                                                        </span>
+                                                                    </div>
+                                                                @enderror
+                                                                <div class="ss">
+                                                                    <button type="submit"
+                                                                        class="btn bg-gradient-primary">บันทึก</button>
+                                                                    <button type="button"
+                                                                        class="btn bg-gradient-secondary"
+                                                                        data-bs-dismiss="modal">ปิด</button>
+
+                                                                </div>
+                                                        </div>
+
+
+
+
+                                                        </form>
+
                                                     </div>
 
                                                 </div>
                                             </div>
                     </div>
 
-
-
-                    </td>
-
-                    </tr>
-                    @endforeach
-
-                    </tbody>
-
-                    </table>
-
+                    <!-- EndModalReq -->
 
                 </div>
+
+
+
+                </td>
+
+                </tr>
+                @endforeach
+
+                </tbody>
+
+                </table>
+
 
             </div>
 
         </div>
-        {{ $booking->links() }}
+
+    </div>
+    {{ $booking->links() }}
     </div>
 
 
 
     </div>
+    <script>
+        function testdelete() {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'ไม่สามารถลบข้อมูลได้',
+                showConfirmButton: true,
 
+            })
+        }
+    </script>
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable({

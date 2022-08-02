@@ -25,7 +25,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -165,6 +168,30 @@
                 @endif
 
 
+
+                @if (request()->routeIs('history_index') || request()->routeIs('history_req'))
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('history_index') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">ประวัติการขอ/การใช้</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('history_index') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">ประวัติการขอ/การใช้</span>
+                        </a>
+                    </li>
+                @endif
+
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ฝ่ายสินทรัพย์</h6>
                 </li>
@@ -192,7 +219,27 @@
                 @endif
 
 
-
+                @if (request()->routeIs('add-bookingadmin'))
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('add-bookingadmin') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-calendar-plus text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">เพิ่มการจอง</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('add-bookingadmin') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-calendar-plus text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">เพิ่มการจอง</span>
+                        </a>
+                    </li>
+                @endif
 
 
             </ul>
@@ -315,7 +362,7 @@
                     <h5 class="mt-3 mb-0">ยินดีต้อนรับ</h5>
                     <br>
                     <p> {{ session('first_name') }} {{ session('last_name') }}</p>
-                       
+
                     <p>สถานะ:ผู้ดูแลระบบ</p>
 
                 </div>
@@ -393,9 +440,9 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+
     <script src="../assets/js/argon-dashboard.min.js?v=2.0.0"></script>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
 
     @stack('js')
 </body>

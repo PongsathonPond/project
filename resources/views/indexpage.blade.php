@@ -52,13 +52,13 @@
                     </a>
                     <a href="{{ route('stafflogin') }}" class="social-icon" data-toggle="tooltip"
                         title="สำหรับผู้ดูแลสถานที่">
-                        <i class="fas fa-user-cog"></i>
+                        <i class="fas fa-users"></i>
                     </a>
 
                     <a href="{{ route('adminlogin') }}" class="social-icon" data-toggle="tooltip"
-                    title="สำหรับผู้ดูแลระบบ">
-                    <i class="fas fa-user-cog"></i>
-                </a>
+                        title="สำหรับผู้ดูแลระบบ">
+                        <i class="fas fa-user-cog"></i>
+                    </a>
                 </div>
                 </form>
                 <form action="#" class="sign-up-form">
