@@ -72,248 +72,253 @@
                                         ชื่อรายการจอง</th>
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         ห้อง</th>
-                                    <th class="font-weight-bolder text-center text-xs" data-sort="name">
-                                        ชื่อผู้จอง</th>
+                                    {{-- <th class="font-weight-bolder text-center text-xs" data-sort="name">
+                                        ชื่อผู้จอง</th> --}}
 
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         เวลาเริ่มต้น-สิ้นสุด</th>
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         สถานะ</th>
 
-                                    <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name">
+                                    <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         จัดการ</th>
-                                    <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name" ">
-                                                                                                                                        </th>
-                                                                                                                                    </tr>
-                                                                                                                                </thead>
-                                                                                                                                @push('js')
-        <tbody>
-                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                              
-                                                                                                                                                                                                 
-                                                                                                                                                 
-                                                                                                 
-                                            @foreach ($booking as $item)
-                                    <tr>
 
-                                        <td class="text-center align-middle">{{ $booking->firstItem() + $loop->index }}
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            {{ $item->project_name }}
-                                        </td>
-                                        <td class="text-center align-middle">
 
-                                            @foreach ($item->booktolocation as $item1)
-                                                {{ $item1->location_name }}
-                                            @endforeach
+                                </tr>
+                            </thead>
+                            @push('js')
+                                <tbody>
 
 
 
 
-                                        </td>
-                                        <td class="text-center align-middle">
+
+
+                                    @foreach ($booking as $item)
+                                        <tr>
+
+                                            <td class="text-center align-middle">{{ $booking->firstItem() + $loop->index }}
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                {{ $item->project_name }}
+                                            </td>
+                                            <td class="text-center align-middle">
+
+                                                @foreach ($item->booktolocation as $item1)
+                                                    {{ $item1->location_name }}
+                                                @endforeach
+
+
+
+
+                                            </td>
+                                            {{-- <td class="text-center align-middle">
 
 
                                             @foreach ($item->booktouser as $item1)
                                                 {{ $item1->first_name }}
                                                 {{ $item1->last_name }}
                                             @endforeach
-                                        </td>
-                                        <td class="text-center align-middle">
+                                        </td> --}}
+                                            <td class="text-center align-middle">
 
-                                            {{ $thaiDateHelper->simpleDateFormat($item->start) }}
-                                            -
-                                            {{ $thaiDateHelper->simpleDateFormat($item->end) }}
+                                                {{ $thaiDateHelper->simpleDateFormat($item->start) }}
+                                                -
+                                                {{ $thaiDateHelper->simpleDateFormat($item->end) }}
 
-                                        </td>
+                                            </td>
 
-                                        <td class="text-center align-middle">
+                                            <td class="text-center align-middle">
 
-                                            @if ($item->status == 1)
-                                                <span class="badge badge-sm bg-success">อนุมัติเรียบร้อย</span>
-                                            @elseif($item->status == 0)
-                                                <span class="badge badge-sm bg-primary">รอการอนุมัติ</span>
-                                            @else
-                                                <span class="badge badge-sm bg-danger">ไม่อนุมัติ</span>
-                                            @endif
-                                        </td>
-
-                                        </td>
-
-
-
-                                        <td>
-                                            <div class="dropdown text-right">
-                                                <button class="btn bg-gradient-primary dropdown-toggle fas fa-edit"
-                                                    type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                                    aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="จัดการข้อมูล" data-container="body" data-animation="true">
-
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <li><a class="dropdown-item text-center"
-                                                            href="{{ asset($item->file_document) }}" target=" _blank"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="เอกสารบันทึกข้อความ">เอกสารบันทึกข้อความ</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item text-center" data-bs-toggle="modal"
-                                                            data-bs-target="#TestReq{{ $item->id }}" href="#"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="แก้ไขรายละเอียดการจอง">แก้ไขรายละเอียดการจอง
-                                                        </a>
-                                                    </li>
-
-                                                    <li><a class="dropdown-item text-center" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal{{ $item->id }}" href="#"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="จัดการคำขอ">จัดการคำขอ
-                                                        </a>
-                                                    </li>
-
-                                                    <li><a class="dropdown-item text-center" data-bs-toggle="modal"
-                                                            data-bs-target="#TestModal{{ $item->id }}" href="#"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="ส่งอีเมล์แจ้งเตือน">ส่งอีเมล์
-                                                        </a>
-                                                    </li>
-
-
-
-                                                    <li><a class="dropdown-item text-center"
-                                                            href="{{ url('/request/delete/' . $item->id) }} class="fas
-                                                            fa-trash-alt fa-lg btn btn-danger"
-                                                            onclick="return confirm('ลบหรือไม่ ?')" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="ลบข้อมูล" data-container="body"
-                                                            data-animation="true"">ลบข้อมูล</a></li>
-                                                </ul>
-
-
-                                            </div>
+                                                @if ($item->status == 1)
+                                                    <span class="badge badge-sm bg-success">อนุมัติเรียบร้อย</span>
+                                                @elseif($item->status == 0)
+                                                    <span class="badge badge-sm bg-primary">รอการอนุมัติ</span>
+                                                @else
+                                                    <span class="badge badge-sm bg-danger">ไม่อนุมัติ</span>
+                                                @endif
+                                            </td>
 
 
 
 
 
+                                            <td class="text-center align-middle">
+                                                <div class="dropdown text-center">
+                                                    <button class="btn bg-gradient-primary dropdown-toggle fas fa-edit"
+                                                        type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                                        aria-expanded="false" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="จัดการข้อมูล" data-container="body" data-animation="true">
+
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <li><a class="dropdown-item text-center"
+                                                                href="{{ asset($item->file_document) }}" target=" _blank"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="เอกสารบันทึกข้อความ">เอกสารบันทึกข้อความ</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item text-center" data-bs-toggle="modal"
+                                                                data-bs-target="#TestReq{{ $item->id }}" href="#"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="แก้ไขรายละเอียดการจอง">แก้ไขรายละเอียดการจอง
+                                                            </a>
+                                                        </li>
+
+                                                        <li><a class="dropdown-item text-center" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModal{{ $item->id }}" href="#"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="จัดการคำขอ">จัดการคำขอ
+                                                            </a>
+                                                        </li>
+
+                                                        <li><a class="dropdown-item text-center" data-bs-toggle="modal"
+                                                                data-bs-target="#TestModal{{ $item->id }}" href="#"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="ส่งอีเมล์แจ้งเตือน">ส่งอีเมล์
+                                                            </a>
+                                                        </li>
 
 
 
-                                            <!-- ModalReq -->
-                                            <div class="modal fade" id="TestReq{{ $item->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                                แก้ไขรายละเอียดการจอง</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ url('/request/updatereq/' . $item->id) }}"
-                                                                method="post">
-                                                                @csrf
+                                                        <li><a class="dropdown-item text-center"
+                                                                href="{{ url('/request/delete/' . $item->id) }} class="fas
+                                                                fa-trash-alt fa-lg btn btn-danger"
+                                                                onclick="return confirm('ลบหรือไม่ ?')" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="ลบข้อมูล" data-container="body"
+                                                                data-animation="true"">ลบข้อมูล</a></li>
+                                                    </ul>
 
-                                                                <div class="row" style="text-align: left">
-                                                                    <div class="col-lg-6">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label"
-                                                                                for="location_id">ห้อง
-                                                                            </label>
-                                                                            <select type="text " class="form-control "
-                                                                                name="location_id">
-
-                                                                                <option value="{{ $item->location_id }}">
-                                                                                    เลือกประเภท</option>
-
-                                                                                @foreach ($location as $item1)
-                                                                                    <option value="{{ $item1->location_id }}">
-                                                                                        {{ $item1->location_name }}
-                                                                                    </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class=" col-lg-5">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label"
-                                                                                for="project_name">ชื่อรายการจอง
-                                                                            </label>
-                                                                            <input type="text" class="form-control"
-                                                                                name="project_name"
-                                                                                value="{{ $item->project_name }}">
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="example-datetime-local-input"
-                                                                                class="form-control-label">เวลาเริ่มต้น</label>
-                                                                            <input class="form-control" type="datetime-local"
-                                                                                name="start" value="{{ $item->start }}"
-                                                                                id="example-datetime-local-input">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="example-datetime-local-input"
-                                                                                class="form-control-label">เวลาสิ้นสุด</label>
-                                                                            <input class="form-control" type="datetime-local"
-                                                                                name="end" value="{{ $item->end }}"
-                                                                                id="example-datetime-local-input">
-                                                                        </div>
-                                                                    </div>
-
-
-
-
-
-
-
-
-
-
-                                                                </div>
-
-
-
-                                                                @error('name')
-                                                                    <div class="my-2">
-                                                                        <span class="text-danger my-2">
-                                                                            {{ $message }}
-                                                                        </span>
-                                                                    </div>
-                                                                @enderror
-
-                                                                @error('email')
-                                                                    <div class="my-2">
-                                                                        <span class="text-danger my-2">
-                                                                            {{ $message }}
-                                                                        </span>
-                                                                    </div>
-                                                                @enderror
-                                                                <div class="ss">
-                                                                    <button type="submit"
-                                                                        class="btn bg-gradient-primary">บันทึก</button>
-                                                                    <button type="button" class="btn bg-gradient-secondary"
-                                                                        data-bs-dismiss="modal">ปิด</button>
-
-                                                                </div>
-                                                        </div>
-
-
-
-
-                                                        </form>
-
-                                                    </div>
 
                                                 </div>
-                                            </div>
+
+
+
+
+
+
+
+
+                                                <!-- ModalReq -->
+                                                <div class="modal fade" id="TestReq{{ $item->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                                    แก้ไขรายละเอียดการจอง</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{ url('/request/updatereq/' . $item->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+
+                                                                    <div class="row" style="text-align: left">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="form-group">
+                                                                                <label class="form-control-label"
+                                                                                    for="location_id">ห้อง
+                                                                                </label>
+                                                                                <select type="text " class="form-control "
+                                                                                    name="location_id">
+
+                                                                                    <option value="{{ $item->location_id }}">
+                                                                                        เลือกประเภท</option>
+
+                                                                                    @foreach ($location as $item1)
+                                                                                        <option
+                                                                                            value="{{ $item1->location_id }}">
+                                                                                            {{ $item1->location_name }}
+                                                                                        </option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class=" col-lg-5">
+                                                                            <div class="form-group">
+                                                                                <label class="form-control-label"
+                                                                                    for="project_name">ชื่อรายการจอง
+                                                                                </label>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="project_name"
+                                                                                    value="{{ $item->project_name }}">
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="example-datetime-local-input"
+                                                                                    class="form-control-label">เวลาเริ่มต้น</label>
+                                                                                <input class="form-control"
+                                                                                    type="datetime-local" name="start"
+                                                                                    value="{{ $item->start }}"
+                                                                                    id="example-datetime-local-input">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="example-datetime-local-input"
+                                                                                    class="form-control-label">เวลาสิ้นสุด</label>
+                                                                                <input class="form-control"
+                                                                                    type="datetime-local" name="end"
+                                                                                    value="{{ $item->end }}"
+                                                                                    id="example-datetime-local-input">
+                                                                            </div>
+                                                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                                                    </div>
+
+
+
+                                                                    @error('name')
+                                                                        <div class="my-2">
+                                                                            <span class="text-danger my-2">
+                                                                                {{ $message }}
+                                                                            </span>
+                                                                        </div>
+                                                                    @enderror
+
+                                                                    @error('email')
+                                                                        <div class="my-2">
+                                                                            <span class="text-danger my-2">
+                                                                                {{ $message }}
+                                                                            </span>
+                                                                        </div>
+                                                                    @enderror
+                                                                    <div class="ss">
+                                                                        <button type="submit"
+                                                                            class="btn bg-gradient-primary">บันทึก</button>
+                                                                        <button type="button"
+                                                                            class="btn bg-gradient-secondary"
+                                                                            data-bs-dismiss="modal">ปิด</button>
+
+                                                                    </div>
+                                                            </div>
+
+
+
+
+                                                            </form>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                         </div>
 
                         <!-- EndModalReq -->
@@ -468,9 +473,7 @@
                         <!-- EndModal -->
 
                         </td>
-                        <td>
 
-                        </td>
 
                         </tr>
                         @endforeach

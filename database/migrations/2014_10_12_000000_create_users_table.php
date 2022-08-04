@@ -54,8 +54,21 @@ return new class extends Migration
             $table->timestamps();
         });
 
+
+        Schema::create('admins', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('role')->default(0);
+            $table->timestamps();
+        });
+
+
         Schema::create('booking_lists', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id')->unsigned()->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->unsignedBigInteger('staff_id')->unsigned()->nullable();;
             $table->unsignedBigInteger('location_id');
@@ -70,6 +83,7 @@ return new class extends Migration
             $table->string('title')->default(0);
             $table->string('status_email')->default(0);
             $table->string('status_cost')->default(0);
+            $table->foreign('admin_id')->references('id')->on('admins');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('staff_id')->references('id')->on('staff');
             $table->foreign('location_id')->references('location_id')->on('locations');
@@ -91,15 +105,7 @@ return new class extends Migration
 
 
 
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('role')->default(0);
-            $table->timestamps();
-        });
+     
     }
 
     /**

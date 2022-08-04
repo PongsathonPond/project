@@ -71,7 +71,7 @@ class AddBookingAdmin extends Controller
 
         $addcal = new BookingList;
         $addcal->location_id = $request->location_id;
-        $addcal->user_id = session('id');
+        $addcal->admin_id = session('id');
         $addcal->project_name = $request->project_name;
         $addcal->agency = $request->agency;
         $addcal->club_name = $request->club_name;

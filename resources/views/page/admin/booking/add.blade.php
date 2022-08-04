@@ -20,10 +20,11 @@
                 <div class="card ">
                     <div class="card-header">
                         <h4>เพิ่มรายการจอง</h4>
+                     
                     </div>
                     <div class="card-body pt-0">
 
-                        <form action="{{ route('booking-add') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('booking-addadmin') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">

@@ -8,6 +8,7 @@ use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\HistoryAdmin;
 use App\Http\Controllers\LocaiotnManageSuperAdmin;
 use App\Http\Controllers\loginAdmin\AuthAdminController;
+use App\Http\Controllers\RequestAdminController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\StaffController;
@@ -91,6 +92,7 @@ Route::post('/locationmanage/update/{id}', [LocaiotnManageSuperAdmin::class, 'up
 Route::get('/request/superadmin', [RequestController::class, 'index'])->name('request-manage');
 Route::post('/request/update/{id}', [RequestController::class, 'update']);
 Route::get('/request/delete/{id}', [RequestController::class, 'delete']);
+
 Route::post('/request/updatereq/{id}', [RequestController::class, 'updatereq'])->name('updatereq');
 //sendemail
 Route::post('/sendmail', [EmailController::class, 'sendEmail'])->name('addlist');
@@ -120,5 +122,8 @@ Route::get('/addbookingadmin/', [AddBookingAdmin::class, 'index'])->name('add-bo
 Route::get('/addbookingadmin/{id}', [AddBookingAdmin::class, 'edit']);
 Route::post('/addbookingadmin/add', [AddBookingAdmin::class, 'store'])->name('booking-addadmin');
 Route::get('fullcalenderadmin/{id}', [AddBookingAdmin::class, 'index2']);
+
+//Request Admin
+Route::get('/request/admin/', [RequestAdminController::class, 'index'])->name('request-admin');
 
 /////admin///////////////////////////////////////////////////////////////////////////
