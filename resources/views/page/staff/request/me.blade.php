@@ -1,10 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.staff')
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
 
 @inject('thaiDateHelper', 'App\Services\ThaiDateHelperService')
 
-@section('content')
+@section('contentstaff')
     <div class="row">
         <div class="col-xl-12 order-xl-1">
 

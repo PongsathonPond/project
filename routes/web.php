@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\AddBookingStaff;
 use App\Http\Controllers\AddBookingAdmin;
 use App\Http\Controllers\AddBookingUserout;
 use App\Http\Controllers\AuthController;
@@ -12,10 +12,12 @@ use App\Http\Controllers\RequestAdminController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\AdminFullcalendar;
 use App\Http\Controllers\UserManageSuperAdmin;
 use App\Http\Controllers\user_out\User_RequestController;
 use App\Http\Controllers\vice_admin\Vice_RequestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RequestStaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +66,24 @@ Route::get('/request_staff', [StaffController::class, 'requeststaff'])->name('st
 Route::post('/request_staff/update/{id}', [StaffController::class, 'update']);
 Route::get('/location_staff', [StaffController::class, "location"])->name('staff-location');
 
+
+//เพิ่มการจอง staff
+
+Route::get('/addbookingastaff/', [AddBookingStaff::class, 'index'])->name('add-bookingstaff');
+Route::get('/addbookingastaff/{id}', [AddBookingStaff::class, 'edit']);
+Route::post('/addbookingstaff/add', [AddBookingStaff::class, 'store'])->name('booking-addstaff');
+Route::get('fullcalenderstaff/{id}', [AddBookingStaff::class, 'index2']);
+
+
+//request me
+
+Route::get('/request/staff/', [RequestStaffController::class, 'index'])->name('request-staff');
+
+
+
 /////staff///////////////////////////////////////////////////////////////////////////
+
+
 
 /////admin///////////////////////////////////////////////////////////////////////////
 
@@ -74,7 +93,10 @@ Route::get('/location_staff', [StaffController::class, "location"])->name('staff
 Route::get('/admin_login', [AuthAdminController::class, "LoginView"])->name('adminlogin');
 Route::post('/admin-do-login', [AuthAdminController::class, "doLogin"]);
 Route::post('/admin-do-register', [AuthAdminController::class, "doRegister"]);
+
 Route::get('/admin_dashboard', [AuthAdminController::class, "dashboard"])->name('admin-dashboard');
+
+
 Route::get('/admin_logout', [AuthAdminController::class, "logout"]);
 
 //จััดการ  user
@@ -126,4 +148,13 @@ Route::get('fullcalenderadmin/{id}', [AddBookingAdmin::class, 'index2']);
 //Request Admin
 Route::get('/request/admin/', [RequestAdminController::class, 'index'])->name('request-admin');
 
+//calendar
+Route::get('/calendar/admin/', [AdminFullcalendar::class, 'index'])->name('calendar-admin');
+
+
+Route::get('fullcalenderadmin/', [FullCalenderController::class, 'indexadmin']);
+
 /////admin///////////////////////////////////////////////////////////////////////////
+
+
+

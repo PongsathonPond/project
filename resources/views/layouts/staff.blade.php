@@ -124,12 +124,62 @@
                 @endif
 
 
-               
+                @if (request()->routeIs('add-bookingstaff'))
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('add-bookingstaff') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">เพิ่มการจอง</span>
+
+                        
+
+                    </a>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('add-bookingstaff') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">เพิ่มการจอง</span>
+                    </a>
+                </li>
+            @endif
 
 
 
 
 
+            @if (request()->routeIs('request-staff'))
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('request-staff') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">รายการจองของฉัน</span>
+
+                    
+
+                </a>
+            </li>
+        @else
+            <li class="nav-item">
+                <a class="nav-link " href="{{ route('request-staff') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">รายการจองของฉัน</span>
+                </a>
+            </li>
+        @endif
+
+           
+                
 
             </ul>
         </div>
@@ -178,6 +228,9 @@
                     @endif
 
 
+
+
+                 
                     @if (request()->routeIs('location-manage'))
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
@@ -331,7 +384,7 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/argon-dashboard.min.js?v=2.0.0"></script>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
+    {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script> --}}
 
     @stack('js')
 </body>

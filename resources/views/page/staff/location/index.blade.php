@@ -6,6 +6,8 @@
         text-decoration: line-through;
     }
 </style>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
+
 @inject('thaiDateHelper', 'App\Services\ThaiDateHelperService')
 
 @section('contentstaff')

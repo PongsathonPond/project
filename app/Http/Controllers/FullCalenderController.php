@@ -19,7 +19,7 @@ class FullCalenderController extends Controller
 
             $data = BookingList::whereDate('start', '>=', $request->start)
                 ->whereDate('end', '<=', $request->end)
-
+                ->where('status', 1)
                 ->get(['id', 'title', 'start', 'end']);
 
             return response()->json($data);
@@ -27,6 +27,25 @@ class FullCalenderController extends Controller
 
         return view('page.user.routes.index');
     }
+
+
+    public function indexadmin(Request $request)
+    {
+
+        
+        if ($request->ajax()) {
+            
+            $data = BookingList::whereDate('start', '>=', $request->start)
+                ->whereDate('end', '<=', $request->end)
+                ->get(['id', 'title', 'start', 'end','status']);
+           
+            return response()->json($data);
+        }
+
+
+        return view('page.admin.calendar.index');
+    }
+
 
     public function show($id)
     {
@@ -75,4 +94,6 @@ class FullCalenderController extends Controller
                 break;
         }
     }
+
+    
 }

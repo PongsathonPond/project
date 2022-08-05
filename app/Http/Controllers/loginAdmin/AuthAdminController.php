@@ -82,6 +82,18 @@ class AuthAdminController extends Controller
     // show dashboard
     public function dashboard()
     {
+
+
+
+
+
+
+
+
+
+
+
+        
         return view('page.admin.routes.index');
     }
 
