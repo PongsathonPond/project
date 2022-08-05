@@ -94,7 +94,7 @@ Route::get('/admin_login', [AuthAdminController::class, "LoginView"])->name('adm
 Route::post('/admin-do-login', [AuthAdminController::class, "doLogin"]);
 Route::post('/admin-do-register', [AuthAdminController::class, "doRegister"]);
 
-Route::get('/admin_dashboard', [AuthAdminController::class, "dashboard"])->name('admin-dashboard');
+Route::get('/admin_dashboard', [AuthAdminController::class, "dashboard"])->name('admin-dashboard')->middleware('Stafftest');
 
 
 Route::get('/admin_logout', [AuthAdminController::class, "logout"]);
