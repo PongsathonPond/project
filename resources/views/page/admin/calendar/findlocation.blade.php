@@ -6,18 +6,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale-all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
 
 </head>
 <style>
@@ -49,10 +49,10 @@
                                 <th class=" text-center text-xs font-weight-bolder" data-sort="name">รูป</th>
                                 <th class=" text-center text-xs font-weight-bolder" data-sort="name">ชื่อห้อง</th>
                                 <th class=" text-center text-xs font-weight-bolder" data-sort="name">จัดการ</th>
+
                             </tr>
                         </thead>
                         <tbody class="list">
-
                             <tr class="ss" align="center">
                                 <td> ห้องทั้งหมด</td>
 
@@ -65,7 +65,6 @@
                                 </td>
 
                             </tr>
-
                             @foreach ($location as $item)
                                 <tr class="ss" align="center">
 
@@ -79,6 +78,8 @@
                                     <td> <a href="{{ url('/calendar/admin/' . $item->location_id) }}"
                                             class=" btn btn-primary fas fa-eye" style="width: 80%;margin-left: 10% "> </a>
                                     </td>
+
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -134,10 +135,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 
 
@@ -166,13 +163,12 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">ปิด</button>
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
 
                 </div>
             </div>
         </div>
     </div>
-
 
 
     <script>
@@ -195,9 +191,10 @@
     </script>
 
 
+
     <script>
         $(document).ready(function() {
-            var SITEURL = "{{ url('/fullcalender') }}";
+            var SITEURL = "{{ url('/') }}";
             var SITEURL2 = "{{ url('/fullcalenderadmin') }}";
             $.ajaxSetup({
                 headers: {
@@ -212,11 +209,12 @@
                     right: 'month,agendaWeek,agendaDay,dayGridMonth,timeGridWeek,timeGridDay,listMonth',
                 },
                 locale: "th",
+
                 eventSources: [{
-                    url: '/fullcalender',
+                    url: SITEURL + "/adminfullcalender1/{{ $find->location_id }}",
                     color: '#92CD28'
                 }, {
-                    url: '/fullcalenderadmin',
+                    url: SITEURL + "/adminfullcalender0/{{ $find->location_id }}",
                     color: '#F78914'
 
                 }],

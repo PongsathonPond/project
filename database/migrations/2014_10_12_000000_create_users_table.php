@@ -54,7 +54,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
@@ -64,7 +63,6 @@ return new class extends Migration
             $table->string('role')->default(0);
             $table->timestamps();
         });
-
 
         Schema::create('booking_lists', function (Blueprint $table) {
             $table->id();
@@ -80,7 +78,7 @@ return new class extends Migration
             $table->string('file_document');
             $table->string('project_cost')->default('nil');
             $table->string('status')->default(0);
-            $table->string('title')->default(0);
+            $table->string('title');
             $table->string('status_email')->default(0);
             $table->string('status_cost')->default(0);
             $table->foreign('admin_id')->references('id')->on('admins');
@@ -103,9 +101,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
-
-     
     }
 
     /**

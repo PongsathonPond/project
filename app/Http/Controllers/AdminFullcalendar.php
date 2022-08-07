@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\BookingList;
+use App\Models\location;
 
 class AdminFullcalendar extends Controller
 {
@@ -11,7 +12,21 @@ class AdminFullcalendar extends Controller
     public function index()
     {
 
+        $location = location::all();
+        $booking = BookingList::all();
+        return view('page.admin.calendar.index', compact('location', 'booking'));
 
-        return view('page.admin.calendar.index');
     }
+
+  
+
+    public function edit($location_id)
+    {
+        $find = Location::find($location_id);
+        $location = location::all();
+
+        return view('page.admin.calendar.findlocation', compact('find', 'location'));
+    }
+
+   
 }

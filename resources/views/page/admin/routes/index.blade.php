@@ -1,112 +1,229 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <h2 class="text-lg mb-1 text-uppercase font-weight-bold">ผู้ใช้ทั้งหมดในระบบ</h2>
 
 
-<div class="container-fluid py-4">
-    <div class="row">
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-    <div class="card">
-    <div class="card-body p-3">
-    <div class="row">
-    <div class="col-8">
-    <div class="numbers">
-    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
-    <h5 class="font-weight-bolder">
-    $53,000
-    </h5>
-    <p class="mb-0">
-    <span class="text-success text-sm font-weight-bolder">+55%</span>
-    since yesterday
-    </p>
-    </div>
-    </div>
-    <div class="col-4 text-end">
-    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-    <div class="card">
-    <div class="card-body p-3">
-    <div class="row">
-    <div class="col-8">
-    <div class="numbers">
-    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
-    <h5 class="font-weight-bolder">
-    2,300
-    </h5>
-    <p class="mb-0">
-    <span class="text-success text-sm font-weight-bolder">+3%</span>
-    since last week
-    </p>
-    </div>
-    </div>
-    <div class="col-4 text-end">
-    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-    <div class="card">
-    <div class="card-body p-3">
-    <div class="row">
-    <div class="col-8">
-    <div class="numbers">
-     <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
-    <h5 class="font-weight-bolder">
-    +3,462
-    </h5>
-    <p class="mb-0">
-    <span class="text-danger text-sm font-weight-bolder">-2%</span>
-    since last quarter
-    </p>
-    </div>
-    </div>
-    <div class="col-4 text-end">
-    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-xl-3 col-sm-6">
-    <div class="card">
-    <div class="card-body p-3">
-    <div class="row">
-    <div class="col-8">
-    <div class="numbers">
-    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
-    <h5 class="font-weight-bolder">
-    $103,430
-    </h5>
-    <p class="mb-0">
-    <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
-    </p>
-    </div>
-    </div>
-    <div class="col-4 text-end">
-    <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countUser as $item)
+                                        ผู้ใช้ภายนอก :{{ $item->total }} คน
+                                    @endforeach
+
+                                </h6>
+
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countStaff as $item)
+                                        ผู้ใช้ภายใน :{{ $item->total }} คน
+                                    @endforeach
+
+                                </h6>
+
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countStaff as $item)
+                                        ผู้ดูแลสถานที่ :{{ $item->total }} คน
+                                    @endforeach
+                                </h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                <i class="fas fa-users text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <h2 class="text-lg mb-1 text-uppercase font-weight-bold">ห้องทั้งหมดในระบบ</h2>
+
+
+
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countLocation as $item)
+                                        ห้องทั้งหมด :{{ $item->total }} ห้อง
+                                    @endforeach
+                                </h6>
+
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countLocation as $item)
+                                        พร้อมใช้งาน :{{ $item->total }} ห้อง
+                                    @endforeach
+                                </h6>
+
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countLocation as $item)
+                                        ไม่พร้อมใช้งาน :0 ห้อง
+                                    @endforeach
+                                </h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                                <i class="fas fa-map-marked-alt text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+
+                                <h2 class="text-lg mb-1 text-uppercase font-weight-bold">คำขอใช้ห้องทั้งหมด</h2>
+
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countRequest as $item)
+                                        ทั้งหมด :{{ $item->total }} คำขอ
+                                    @endforeach
+
+                                </h6>
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countRequestNoPass as $item)
+                                        รอการอนุมัติ :{{ $item->total }} คำขอ
+                                    @endforeach
+
+                                </h6>
+
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countRequestPass as $item)
+                                        ผ่านการอนุมัติ :{{ $item->total }} คำขอ
+                                    @endforeach
+
+                                </h6>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                                <i class="fas fa-paste text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+
+                                <h2 class="text-lg mb-1 text-uppercase font-weight-bold">คำขอรอการประเมินราคา</h2>
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countRequest as $item)
+                                        ทั้งหมด :{{ $item->total }} คำขอ
+                                    @endforeach
+
+                                </h6>
+                                <h6 class="font-weight-bolder">
+                                    @foreach ($countViceAdminNoPass as $item)
+                                        ผ่านการประเมิน :{{ $item->total }} คำขอ
+                                    @endforeach
+
+                                </h6>
+
+                                <h6 class="font-weight-bolder">
+
+
+                                    @foreach ($countViceAdminPass as $item)
+                                        รอการประเมิน :{{ $item->total }} คำขอ
+                                    @endforeach
+
+                                </h6>
+
+
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                                <i class="fas fa-user-cog text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
-      
-    
+    <div class="cotainer-fluid py-4">
+
+
+        <div class="row">
+
+
+            <div class="col-xl-12 order-xl-1">
+
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>สถิติการใช้ห้อง</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class=" text-center text-xs font-weight-bolder" data-sort="name">
+                                            ลำดับ</th>
+                                        <th class=" text-center text-xs font-weight-bolder" data-sort="name">
+                                            รูป</th>
+                                        <th class=" text-center text-xs font-weight-bolder" data-sort="name">
+                                            ชื่อห้อง</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach ($sumLocation as $item)
+                                        <tr>
+
+                                            <td class="align-middle text-center">
+                                                {{ $item->location_name }}
+                                            </td>
+                                            <td class="align-middle text-center"></td>
+
+                                            <td class="align-middle text-center">
+                                                {{ $item->total }}
+                                            </td>
+
+
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

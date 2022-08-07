@@ -53,12 +53,12 @@
 
                 @if (request()->routeIs('admin-dashboard'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('admin-dashboard') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('admin-dashboard') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                                <i class="ni ni-tv-2 text text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">Dashboard</span>
+                            <span class="nav-link-text  text-white ms-1">Dashboard</span>
 
 
                         </a>
@@ -75,38 +75,42 @@
                     </li>
                 @endif
 
-                @if (request()->routeIs('user-manage'))
+
+                @if (request()->routeIs('calendar-admin'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('user-manage') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('calendar-admin') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-users-cog text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-book-medical text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">จัดการข้อมูลผู้ใช้</span>
+                            <span class="nav-link-text text-white  ms-1">ปฏิทิน</span>
                         </a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('user-manage') }}">
+                        <a class="nav-link " href="{{ route('calendar-admin') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-users-cog text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">จัดการข้อมูลผู้ใช้</span>
+                            <span class="nav-link-text ms-1">ปฏิทิน</span>
                         </a>
                     </li>
                 @endif
 
 
 
+
+
+
                 @if (request()->routeIs('location-manage'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('location-manage') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('location-manage') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-map-marker-alt text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-map-marker-alt text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">จัดการข้อมูลห้อง</span>
+                            <span class="nav-link-text text-white ms-1">จัดการข้อมูลห้อง</span>
                         </a>
                     </li>
                 @else
@@ -124,12 +128,12 @@
 
                 @if (request()->routeIs('request-manage'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('request-manage') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('request-manage') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-book-medical text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">จัดการคำขอ</span>
+                            <span class="nav-link-text text-white ms-1">จัดการคำขอ</span>
                         </a>
                     </li>
                 @else
@@ -147,12 +151,12 @@
 
                 @if (request()->routeIs('staff_add'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('staff_add') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('staff_add') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-book-medical text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">เพิ่มผู้ดูแล</span>
+                            <span class="nav-link-text text-white ms-1">เพิ่มผู้ดูแล</span>
                         </a>
                     </li>
                 @else
@@ -171,12 +175,12 @@
 
                 @if (request()->routeIs('history_index') || request()->routeIs('history_req'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('history_index') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('history_index') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-book-medical text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">ประวัติการขอ/การใช้</span>
+                            <span class="nav-link-text  text-white ms-1">ประวัติการขอ/การใช้</span>
                         </a>
                     </li>
                 @else
@@ -192,42 +196,43 @@
                 @endif
 
 
-
-                @if (request()->routeIs('calendar-admin'))
+                @if (request()->routeIs('user-manage'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('calendar-admin') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('user-manage') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-users-cog text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">ปฏิทิน</span>
+                            <span class="nav-link-text text-white ms-1">จัดการข้อมูลผู้ใช้</span>
                         </a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('calendar-admin') }}">
+                        <a class="nav-link " href="{{ route('user-manage') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-users-cog text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">ปฏิทิน</span>
+                            <span class="nav-link-text ms-1">จัดการข้อมูลผู้ใช้</span>
                         </a>
                     </li>
                 @endif
 
-                
+
+
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ฝ่ายสินทรัพย์</h6>
                 </li>
 
                 @if (request()->routeIs('request_vice'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('request_vice') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('request_vice') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-book-medical text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">ประเมินราคา</span>
+                            <span class="nav-link-text text-white ms-1">ประเมินราคา</span>
                         </a>
                     </li>
                 @else
@@ -245,12 +250,12 @@
 
                 @if (request()->routeIs('add-bookingadmin'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('add-bookingadmin') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('add-bookingadmin') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-calendar-plus text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-calendar-plus text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">เพิ่มการจอง</span>
+                            <span class="nav-link-text text-white ms-1">เพิ่มการจอง</span>
                         </a>
                     </li>
                 @else
@@ -267,12 +272,12 @@
 
                 @if (request()->routeIs('request-admin'))
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('request-admin') }}">
+                        <a class="nav-link bg-primary active" href="{{ route('request-admin') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-calendar-plus text-primary text-sm opacity-10"></i>
+                                <i class="fas fa-calendar-plus text-white text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">รายการจองของฉัน</span>
+                            <span class="nav-link-text text-white ms-1">รายการจองของฉัน</span>
                         </a>
                     </li>
                 @else

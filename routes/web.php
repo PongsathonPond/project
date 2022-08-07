@@ -1,7 +1,8 @@
 <?php
-use App\Http\Controllers\AddBookingStaff;
 use App\Http\Controllers\AddBookingAdmin;
+use App\Http\Controllers\AddBookingStaff;
 use App\Http\Controllers\AddBookingUserout;
+use App\Http\Controllers\AdminFullcalendar;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FullCalenderController;
@@ -10,14 +11,13 @@ use App\Http\Controllers\LocaiotnManageSuperAdmin;
 use App\Http\Controllers\loginAdmin\AuthAdminController;
 use App\Http\Controllers\RequestAdminController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\RequestStaffController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\StaffController;
-use App\Http\Controllers\AdminFullcalendar;
 use App\Http\Controllers\UserManageSuperAdmin;
 use App\Http\Controllers\user_out\User_RequestController;
 use App\Http\Controllers\vice_admin\Vice_RequestController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RequestStaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +44,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/addbooking/add', [AddBookingUserout::class, 'store'])->name('booking-add');
 
     //จัดการปฏิทิน
-    Route::get('fullcalender/', [FullCalenderController::class, 'index']);
-    Route::get('fullcalender2/{id}', [AddBookingUserout::class, 'index2']);
-    Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
-    Route::resource('/booking', FullCalenderController::class);
 
 });
+Route::get('fullcalender2/{id}', [AddBookingUserout::class, 'index2']);
+Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+Route::resource('/booking', FullCalenderController::class);
+Route::get('fullcalender/', [FullCalenderController::class, 'index']);
 
 /////staff///////////////////////////////////////////////////////////////////////////
 
@@ -66,7 +66,6 @@ Route::get('/request_staff', [StaffController::class, 'requeststaff'])->name('st
 Route::post('/request_staff/update/{id}', [StaffController::class, 'update']);
 Route::get('/location_staff', [StaffController::class, "location"])->name('staff-location');
 
-
 //เพิ่มการจอง staff
 
 Route::get('/addbookingastaff/', [AddBookingStaff::class, 'index'])->name('add-bookingstaff');
@@ -74,16 +73,11 @@ Route::get('/addbookingastaff/{id}', [AddBookingStaff::class, 'edit']);
 Route::post('/addbookingstaff/add', [AddBookingStaff::class, 'store'])->name('booking-addstaff');
 Route::get('fullcalenderstaff/{id}', [AddBookingStaff::class, 'index2']);
 
-
 //request me
 
 Route::get('/request/staff/', [RequestStaffController::class, 'index'])->name('request-staff');
 
-
-
 /////staff///////////////////////////////////////////////////////////////////////////
-
-
 
 /////admin///////////////////////////////////////////////////////////////////////////
 
@@ -95,7 +89,6 @@ Route::post('/admin-do-login', [AuthAdminController::class, "doLogin"]);
 Route::post('/admin-do-register', [AuthAdminController::class, "doRegister"]);
 
 Route::get('/admin_dashboard', [AuthAdminController::class, "dashboard"])->name('admin-dashboard')->middleware('Stafftest');
-
 
 Route::get('/admin_logout', [AuthAdminController::class, "logout"]);
 
@@ -148,13 +141,20 @@ Route::get('fullcalenderadmin/{id}', [AddBookingAdmin::class, 'index2']);
 //Request Admin
 Route::get('/request/admin/', [RequestAdminController::class, 'index'])->name('request-admin');
 
-//calendar
+//calendar ทั้งหมด
 Route::get('/calendar/admin/', [AdminFullcalendar::class, 'index'])->name('calendar-admin');
+Route::get('/calendar/admin/{id}', [AdminFullcalendar::class, 'edit']);
 
-
+//
 Route::get('fullcalenderadmin/', [FullCalenderController::class, 'indexadmin']);
+//
+
+//calendar
+Route::get('findcalender1/{id}', [AdminFullcalendar::class, 'index2']);
+Route::get('findcalender0/{id}', [AdminFullcalendar::class, 'index3']);
+
+Route::get('adminfullcalender1/{id}', [AddBookingUserout::class, 'index3']);
+
+Route::get('adminfullcalender0/{id}', [AddBookingUserout::class, 'index4']);
 
 /////admin///////////////////////////////////////////////////////////////////////////
-
-
-

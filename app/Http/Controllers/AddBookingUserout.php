@@ -11,10 +11,10 @@ class AddBookingUserout extends Controller
 {
     public function index()
     {
-       
+
         $location = location::all();
         $booking = BookingList::all();
-        return view('page.user.booking.index', compact('location','booking'));
+        return view('page.user.booking.index', compact('location', 'booking'));
     }
 
     public function index2(Request $request, $id)
@@ -33,6 +33,43 @@ class AddBookingUserout extends Controller
 
         return view('page.user.booking.add');
     }
+
+    public function index3(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+
+            $data = BookingList::whereDate('start', '>=', $request->start)
+                ->whereDate('end', '<=', $request->end)
+                ->where('location_id', $id)
+                ->where('status', 1)
+                ->get(['id', 'title', 'start', 'end', 'location_id']);
+
+            return response()->json($data);
+
+        }
+
+        return view('page.user.booking.add');
+    }
+
+    public function index4(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+
+            $data = BookingList::whereDate('start', '>=', $request->start)
+                ->whereDate('end', '<=', $request->end)
+                ->where('location_id', $id)
+                ->where('status', 0)
+                ->get(['id', 'title', 'start', 'end', 'location_id']);
+
+            return response()->json($data);
+
+        }
+
+        return view('page.user.booking.add');
+    }
+
     public function edit($location_id)
     {
 

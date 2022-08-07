@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\loginAdmin;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,12 +17,10 @@ class AuthAdminController extends Controller
     {
         return view("test.admin");
     }
-    
 
     public function doLogin(Request $request)
     {
 
-     
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:5|max:12',
@@ -39,7 +38,7 @@ class AuthAdminController extends Controller
                 $request->session()->put('email', $data['email']);
                 $request->session()->put('first_name', $userInfo->first_name);
                 $request->session()->put('last_name', $userInfo->last_name);
-              
+
                 // return view('page.staff.routes.index');
                 return redirect()->route('admin-dashboard');
             } else {
@@ -52,7 +51,6 @@ class AuthAdminController extends Controller
     public function doRegister(Request $request)
     {
 
-       
         $validator = Validator::make($request->all(), [
             'first_name' => 'required', // required and email format validation
             'last_name' => 'required', // required and number field validation
@@ -72,7 +70,7 @@ class AuthAdminController extends Controller
             $User->email = $request->email;
             $User->first_name = $request->first_name;
             $User->last_name = $request->last_name;
-        
+
             $User->password = bcrypt($request->password);
             $User->save();
 
@@ -83,18 +81,34 @@ class AuthAdminController extends Controller
     public function dashboard()
     {
 
+        $countUser = DB::table('users')->select(DB::raw('count(id) as total'))->get();
+        $countStaff = DB::table('staff')->select(DB::raw('count(id) as total'))->get();
+        $countLocation = DB::table('locations')->select(DB::raw('count(location_id) as total'))->get();
 
+        $countRequest = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->get();
+        $countRequestPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status', 1)->get();
+        $countRequestNoPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status', 0)->get();
 
+        $countViceAdminPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status_cost', 1)->get();
+        $countViceAdminNoPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status_cost', 0)->get();
 
+        $sumLocation = DB::table('booking_lists')
+            ->leftJoin('locations', 'booking_lists.location_id', '=', 'locations.location_id')
+            ->select('locations.location_name', DB::raw('count(booking_lists.location_id) as total'))
+            ->groupBy('locations.location_name')
+            ->get();
 
+        return view('page.admin.routes.index', compact('countUser',
+            'countStaff',
+            'countLocation',
+            'countRequest',
+            'countRequestPass',
+            'countRequestNoPass',
+            'countViceAdminPass',
+            'countViceAdminNoPass',
+            'sumLocation',
 
-
-
-
-
-
-        
-        return view('page.admin.routes.index');
+        ));
     }
 
     // logout method to clear the sesson of logged in user

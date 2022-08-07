@@ -75,6 +75,7 @@ class AddBookingAdmin extends Controller
         $addcal->project_name = $request->project_name;
         $addcal->agency = $request->agency;
         $addcal->club_name = $request->club_name;
+        $addcal->title = $request->title;
         $addcal->start = $request->start;
         $addcal->end = $request->end;
         $addcal->file_document = $full_path;

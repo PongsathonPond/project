@@ -10,6 +10,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale-all.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+@inject('thaiDateHelper', 'App\Services\ThaiDateHelperService')
 
 @section('content')
     <div class="container-fluid mt--6">
@@ -20,7 +21,7 @@
                 <div class="card ">
                     <div class="card-header">
                         <h4>เพิ่มรายการจอง</h4>
-                     
+
                     </div>
                     <div class="card-body pt-0">
 
@@ -34,6 +35,7 @@
                                         <input class="form-control" type="text" value="{{ $location->location_name }}"
                                             readonly>
                                         <input type="hidden" name="location_id" value="{{ $location->location_id }}">
+                                        <input type="hidden" name="title" value="{{ $location->location_name }}">
                                     </div>
                                 </div>
 
@@ -137,6 +139,38 @@
                     </div>
                 </div>
 
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <span>ชื่อรายการจอง : <b> <span id="project_name"> </b></span>
+
+                                <br>
+                                <span>ชื่อห้อง : <b> <span id="title"></b> </span>
+                                <br>
+                                <span>เวลาเริ่ม : <b> <span id="start"> </b> </span>
+                                <br>
+                                <span>เวลาสิ้นสุด : <b> <span id="end"> </b> </span>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn bg-gradient-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn bg-gradient-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <script>
                     $(document).ready(function() {
                         var SITEURL = "{{ url('/') }}";
@@ -154,7 +188,7 @@
                                 // right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
                             },
                             locale: "th",
-                            events: SITEURL + "/fullcalenderadmin/{{ $location->location_id }}",
+                            events: SITEURL + "/fullcalender",
                             eventColor: '#378006',
                             eventTextColor: '#000000',
                             lang: 'th',
@@ -165,6 +199,35 @@
                             timezone: 'Asia/Bangkok',
                             defaultDate: new Date(),
                             contentHeight: 600,
+                            eventClick: function(calEvent, jsEvent, view) {
+                                $.ajax({
+                                    type: 'get',
+                                    url: "{{ url('/booking') }}/" + calEvent.id,
+                                    success: function(respones) {
+                                        var start = new Date(respones.start);
+
+                                        var end = new Date(respones.end);
+
+                                        var newstart = start.toLocaleString("th-TH", {
+                                            timeZone: 'Asia/Bangkok',
+
+                                        })
+
+                                        var newend = end.toLocaleString("th-TH", {
+                                            timeZone: "Asia/Bangkok"
+                                        })
+                                        $('#project_name').text(respones.project_name);
+                                        $('#title').text(respones.title);
+                                        $('#start').text(newstart);
+                                        $('#end').text(newend);
+
+                                    }
+
+                                })
+                                $('#exampleModal').modal("show");
+
+                            }
+
                         });
                     });
                 </script>
