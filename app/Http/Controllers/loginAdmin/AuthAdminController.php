@@ -93,9 +93,10 @@ class AuthAdminController extends Controller
         $countViceAdminNoPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status_cost', 0)->get();
 
         $sumLocation = DB::table('booking_lists')
-            ->leftJoin('locations', 'booking_lists.location_id', '=', 'locations.location_id')
+            ->join('locations', 'booking_lists.location_id', '=', 'locations.location_id')
             ->select('locations.location_name', DB::raw('count(booking_lists.location_id) as total'))
             ->groupBy('locations.location_name')
+            ->orderBy('total', 'desc')
             ->get();
 
         return view('page.admin.routes.index', compact('countUser',
