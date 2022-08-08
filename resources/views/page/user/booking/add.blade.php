@@ -33,6 +33,8 @@
                                         <input class="form-control" type="text" value="{{ $location->location_name }}"
                                             readonly>
                                         <input type="hidden" name="location_id" value="{{ $location->location_id }}">
+                                        <input type="hidden" name="title" value="{{ $location->location_name }}">
+                                    
                                     </div>
                                 </div>
 
@@ -48,6 +50,7 @@
                                         <label for="example-text-input" class="form-control-label">ชื่อหน่วยงาน</label>
                                         <input class="form-control" name="agency" type="text">
                                         <input type="hidden" name="club_name" value="null">
+                                    
                                     </div>
                                 </div>
 

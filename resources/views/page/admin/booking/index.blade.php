@@ -49,8 +49,12 @@
                         <!-- Modal -->
                         {{-- {{ $thaiDateHelper->simpleDateFormat($item->created_at) }} --}}
                     </div>
+                    <br> 
                 </div>
+               
+                
             @endforeach
+            
             {{-- @foreach ($booking as $item)
                 <a href="{{ asset($item->file_document) }}" target=" _blank">Open the pdf!</a>
             @endforeach --}}

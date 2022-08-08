@@ -49,6 +49,7 @@
                         <!-- Modal -->
                         {{-- {{ $thaiDateHelper->simpleDateFormat($item->created_at) }} --}}
                     </div>
+                    <br>
                 </div>
             @endforeach
             {{-- @foreach ($booking as $item)

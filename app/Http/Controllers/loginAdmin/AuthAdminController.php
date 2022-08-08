@@ -94,8 +94,8 @@ class AuthAdminController extends Controller
 
         $sumLocation = DB::table('booking_lists')
             ->join('locations', 'booking_lists.location_id', '=', 'locations.location_id')
-            ->select('locations.location_name', DB::raw('count(booking_lists.location_id) as total'))
-            ->groupBy('locations.location_name')
+            ->select('locations.location_name','locations.location_image', DB::raw('count(booking_lists.location_id) as total'))
+            ->groupBy('locations.location_name','locations.location_image')
             ->orderBy('total', 'desc')
             ->get();
 

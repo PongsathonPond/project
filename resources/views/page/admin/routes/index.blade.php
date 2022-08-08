@@ -188,24 +188,36 @@
                                     <tr>
                                         <th class=" text-center text-xs font-weight-bolder" data-sort="name">
                                             ลำดับ</th>
-                                        <th class=" text-center text-xs font-weight-bolder" data-sort="name">
+                                            <th class=" text-center text-xs font-weight-bolder" data-sort="name">
                                             รูป</th>
                                         <th class=" text-center text-xs font-weight-bolder" data-sort="name">
                                             ชื่อห้อง</th>
+                                        <th class=" text-center text-xs font-weight-bolder" data-sort="name">
+                                            จำนวนครั้งที่ใช้</th>
 
 
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @php
+                                        $i=1;
+                                    @endphp
                                     @foreach ($sumLocation as $item)
                                         <tr>
 
+                                           
+                                            <td class="align-middle text-center">
+                                                {{$i++}}
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <img src="{{ asset($item->location_image) }}"
+                                                alt="" width="60vh" height="60vh">
+                                            </td>
+                                           
                                             <td class="align-middle text-center">
                                                 {{ $item->location_name }}
                                             </td>
-                                            <td class="align-middle text-center"></td>
-
+                                           
                                             <td class="align-middle text-center">
                                                 {{ $item->total }}
                                             </td>

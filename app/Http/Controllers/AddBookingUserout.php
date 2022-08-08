@@ -80,6 +80,8 @@ class AddBookingUserout extends Controller
     public function store(Request $request)
     {
 
+
+     
         $request->validate([
             'location_id' => 'required|max:255',
             'project_name' => 'required|max:255',
@@ -116,6 +118,7 @@ class AddBookingUserout extends Controller
         $addcal->club_name = $request->club_name;
         $addcal->start = $request->start;
         $addcal->end = $request->end;
+        $addcal->title = $request->title;
         $addcal->file_document = $full_path;
 
         $addcal->save();
