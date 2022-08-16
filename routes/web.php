@@ -135,8 +135,11 @@ Route::get('/manage/historyreq', [HistoryAdmin::class, 'index2'])->name('history
 
 Route::get('/addbookingadmin/', [AddBookingAdmin::class, 'index'])->name('add-bookingadmin');
 Route::get('/addbookingadmin/{id}', [AddBookingAdmin::class, 'edit']);
+
 Route::post('/addbookingadmin/add', [AddBookingAdmin::class, 'store'])->name('booking-addadmin');
+
 Route::get('fullcalenderadmin/{id}', [AddBookingAdmin::class, 'index2']);
+
 
 //Request Admin
 Route::get('/request/admin/', [RequestAdminController::class, 'index'])->name('request-admin');

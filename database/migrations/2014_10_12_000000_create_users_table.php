@@ -63,13 +63,22 @@ return new class extends Migration
             $table->string('role')->default(0);
             $table->timestamps();
         });
+        Schema::create('bookingstatus', function (Blueprint $table) {
+            $table->id();
+            $table->string('bookingstatus_name');
+         
+        });
 
         Schema::create('booking_lists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->unsigned()->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
-            $table->unsignedBigInteger('staff_id')->unsigned()->nullable();;
+            $table->unsignedBigInteger('staff_id')->unsigned()->nullable();
+
+            $table->unsignedBigInteger('status')->unsigned()->nullable()->default(0);
             $table->unsignedBigInteger('location_id');
+
+         
             $table->string('project_name');
             $table->string('agency');
             $table->string('club_name');
@@ -77,16 +86,22 @@ return new class extends Migration
             $table->string('end');
             $table->string('file_document');
             $table->string('project_cost')->default('nil');
-            $table->string('status')->default(0);
+           
             $table->string('title');
             $table->string('status_email')->default(0);
             $table->string('status_cost')->default(0);
+
+            $table->foreign('status')->references('id')->on('bookingstatus');
             $table->foreign('admin_id')->references('id')->on('admins');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('staff_id')->references('id')->on('staff');
             $table->foreign('location_id')->references('location_id')->on('locations');
             $table->timestamps();
         });
+
+
+     
+
 
         Schema::create('attentions', function (Blueprint $table) {
             $table->id();
@@ -116,5 +131,6 @@ return new class extends Migration
         Schema::dropIfExists('locations');
         Schema::dropIfExists('staff');
         Schema::dropIfExists('attentions');
+        Schema::dropIfExists('bookingstatus');
     }
 };
