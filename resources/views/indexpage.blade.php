@@ -61,26 +61,7 @@
                     </a>
                 </div>
                 </form>
-                <form action="#" class="sign-up-form">
-                    <h2 class="title">สมัครสมาชิก</h2>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" />
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" />
-                    </div>
-                    <input type="submit" class="btn" value="Sign up" />
 
-                    <div class="social-media">
-
-                    </div>
-                </form>
             </div>
         </div>
 
@@ -91,9 +72,11 @@
                     <p>
                         สำหรับบุคคุลภายนอกที่ต้องการขอใช้สถานที่ภายใน มหาวิทยาลัยเทคโนโลยีราชมงคลอีสาน
                     </p>
-                    <button class="btn transparent" id="sign-up-btn">
-                        Register
-                    </button>
+                    <a href="{{ route('register') }}">
+                        <button class="btn transparent" id="sign-up-btn">
+                            Register
+                        </button>
+                    </a>
                 </div>
 
                 <img src="{{ asset('imglogin/location2.svg') }}" class="image" alt="tag">

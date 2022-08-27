@@ -56,9 +56,9 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="example-datetime-local-input"
-                                            class="form-control-label">Datetime</label>
+                                            class="form-control-label">วันเวลาเริ่มต้น</label>
                                         <input class="form-control" type="datetime-local" name="start"
-                                            value="2022-11-23T10:30:00" id="example-datetime-local-input">
+                                            id="example-datetime-local-input">
                                     </div>
                                 </div>
 
@@ -71,9 +71,9 @@
 
                                     <div class="form-group">
                                         <label for="example-datetime-local-input"
-                                            class="form-control-label">Datetime</label>
+                                            class="form-control-label">วันเวลาสิ้นสุด</label>
                                         <input class="form-control" type="datetime-local" name="end"
-                                            value="2022-11-23T10:30:00" id="example-datetime-local-input">
+                                            id="example-datetime-local-input">
 
 
                                     </div>
@@ -94,6 +94,7 @@
                             </div>
                             <br>
                             <input type="hidden" name="staff_id" value="null">
+                            <input type="hidden" name="title" value="{{ $location->location_name }}">
                             <input type="submit" value="เพิ่ม" class="btn btn-success ">
                         </form>
 

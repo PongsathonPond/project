@@ -117,6 +117,7 @@ class AddBookingUserout extends Controller
         $addcal->start = $request->start;
         $addcal->end = $request->end;
         $addcal->file_document = $full_path;
+        $addcal->title = $request->title;
 
         $addcal->save();
 

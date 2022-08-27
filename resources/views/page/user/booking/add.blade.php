@@ -33,6 +33,7 @@
                                         <input class="form-control" type="text" value="{{ $location->location_name }}"
                                             readonly>
                                         <input type="hidden" name="location_id" value="{{ $location->location_id }}">
+                                        <input type="hidden" name="title" value="{{ $location->location_name }}">
                                     </div>
                                 </div>
 
@@ -56,7 +57,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="example-datetime-local-input"
-                                            class="form-control-label">Datetime</label>
+                                            class="form-control-label">เวลาเริ่มต้น</label>
                                         <input class="form-control" type="datetime-local" name="start"
                                             value="2022-11-23T10:30:00" id="example-datetime-local-input">
                                     </div>
@@ -71,7 +72,7 @@
 
                                     <div class="form-group">
                                         <label for="example-datetime-local-input"
-                                            class="form-control-label">Datetime</label>
+                                            class="form-control-label">เวลาสิ้นสุด</label>
                                         <input class="form-control" type="datetime-local" name="end"
                                             value="2022-11-23T10:30:00" id="example-datetime-local-input">
 

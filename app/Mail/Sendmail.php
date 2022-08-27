@@ -16,10 +16,16 @@ class Sendmail extends Mailable
      *
      * @return void
      */
-    public function __construct($name, $content)
+    public function __construct($name, $content, $head, $location, $start, $end, $status)
     {
         $this->name = $name;
         $this->content = $content;
+        $this->head = $head;
+
+        $this->location = $location;
+        $this->start = $start;
+        $this->end = $end;
+        $this->status = $status;
 
     }
 
@@ -32,8 +38,21 @@ class Sendmail extends Mailable
     {
 
         $test = $this->content;
+        $head = $this->head;
 
-        return $this->from('from_email@gmail.com', 'RMUTI')->subject('รายงานการจองห้อง')->view('email', compact('test'))->with("name", $this->name);
+        $location = $this->location;
+        $start = $this->start;
+        $end = $this->end;
+        $status = $this->status;
+
+        if ($this->status == 1) {
+
+            return $this->from('from_email@gmail.com', 'RMUTI')->subject('รายงานการจองห้อง')->view('email', compact('test', 'head', 'location', 'start', 'end', 'status'))->with("name", $this->name);
+
+        } else {
+            return $this->from('from_email@gmail.com', 'RMUTI')->subject('รายงานการจองห้อง')->view('emailno', compact('test', 'head', 'location', 'start', 'end', 'status'))->with("name", $this->name);
+
+        }
 
     }
 }

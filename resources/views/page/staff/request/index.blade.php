@@ -64,8 +64,8 @@
                                         ชื่อรายการจอง</th>
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         ห้อง</th>
-                                    <th class="font-weight-bolder text-center text-xs" data-sort="name">
-                                        ชื่อผู้จอง</th>
+                                    {{-- <th class="font-weight-bolder text-center text-xs" data-sort="name">
+                                        ชื่อผู้จอง</th> --}}
 
                                     <th class="font-weight-bolder text-center text-xs" data-sort="name">
                                         เวลาเริ่มต้น-สิ้นสุด</th>
@@ -75,15 +75,13 @@
                                     <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name">
                                         จัดการ</th>
                                     <th class="text-aa font-weight-bolder text-center text-xs" data-sort="name" ">
-                                                                                                                            </th>
-                                                                                                                        </tr>
-                                                                                                                    </thead>
-                                                                                                                    @push('js')
+                                                                                                                                                                            </th>
+                                                                                                                                                                        </tr>
+                                                                                                                                                                    </thead>
+                                                                                                                                                                    @push('js')
         <tbody>
-                                                                                                                                                                                                               
-                                                                                                                                                                                                                      
-                                                                                                                                                                         
-                                                                                                                         
+                                                                                                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                                                                                                                                                                                      
                                                                        @foreach ($requeststaff as
                                             $item)
                                     <tr>
@@ -102,12 +100,11 @@
 
 
                                         </td>
-                                        <td class="text-center align-middle">
+                                        {{-- <td class="text-center align-middle">
 
-                                            {{ $item->title_name }}
                                             {{ $item->first_name }}
                                             {{ $item->last_name }}
-                                        </td>
+                                        </td> --}}
                                         <td class="text-center align-middle">
 
                                             {{ $thaiDateHelper->simpleDateFormat($item->start) }}
@@ -127,7 +124,7 @@
                                             @endif
                                         </td>
 
-                                     
+
 
 
                                         <td>
@@ -188,8 +185,8 @@
                                                             <form action="{{ route('addlist') }}" method="post">
                                                                 @csrf
 
-                                                                {{-- <input type="text" class="form-control" name="email"
-                                                                    value=@foreach ($item->booktouser as $item1) {{ $item1->email }} @endforeach> --}}
+                                                                <input type="text" class="form-control" name="email"
+                                                                    value="">
                                                                 <input type="text" class="form-control" name="content">
 
                                                                 <input type="submit" value="เพิ่ม" class="btn btn-success "
@@ -200,12 +197,7 @@
                                                             </form>
 
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn bg-gradient-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn bg-gradient-primary">Save
-                                                                changes</button>
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>

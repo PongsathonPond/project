@@ -118,68 +118,93 @@
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                             </div>
-                            <span class="nav-link-text ms-1">จักการสถานที่</span>
+                            <span class="nav-link-text ms-1">จัดการสถานที่</span>
                         </a>
                     </li>
                 @endif
 
 
+
+                @if (request()->routeIs('staff_history_index') || request()->routeIs('staff_history_req'))
+                    <li class="nav-item">
+                        <a class="nav-link bg-primary active" href="{{ route('staff_history_index') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-white text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text  text-white ms-1">ประวัติการขอ/การใช้</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('staff_history_index') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-book-medical text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">ประวัติการขอ/การใช้</span>
+                        </a>
+                    </li>
+                @endif
+
+
+
                 @if (request()->routeIs('add-bookingstaff'))
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('add-bookingstaff') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">เพิ่มการจอง</span>
-
-                        
-
-                    </a>
-                </li>
-            @else
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ route('add-bookingstaff') }}">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">เพิ่มการจอง</span>
-                    </a>
-                </li>
-            @endif
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('add-bookingstaff') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">เพิ่มการจอง</span>
 
 
 
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('add-bookingstaff') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">เพิ่มการจอง</span>
+                        </a>
+                    </li>
+                @endif
 
 
-            @if (request()->routeIs('request-staff'))
-            <li class="nav-item">
-                <a class="nav-link active" href="{{ route('request-staff') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">รายการจองของฉัน</span>
 
-                    
 
-                </a>
-            </li>
-        @else
-            <li class="nav-item">
-                <a class="nav-link " href="{{ route('request-staff') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">รายการจองของฉัน</span>
-                </a>
-            </li>
-        @endif
 
-           
-                
+                @if (request()->routeIs('request-staff'))
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('request-staff') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">รายการจองของฉัน</span>
+
+
+
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('request-staff') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">รายการจองของฉัน</span>
+                        </a>
+                    </li>
+                @endif
+
+
+
 
             </ul>
         </div>
@@ -230,7 +255,7 @@
 
 
 
-                 
+
                     @if (request()->routeIs('location-manage'))
                         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"

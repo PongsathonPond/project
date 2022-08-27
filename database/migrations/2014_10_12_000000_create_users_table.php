@@ -64,12 +64,39 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('bookingstatus', function (Blueprint $table) {
+            $table->id();
+            $table->string('bookingstatus_name');
+            $table->timestamps();
+        });
+
+        Schema::create('coststatus', function (Blueprint $table) {
+            $table->id();
+            $table->string('coststatus_name');
+            $table->timestamps();
+        });
+
+        Schema::create('insiders', function (Blueprint $table) {
+            $table->id();
+            $table->string('student_id');
+            $table->string('title_name');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone_number');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->timestamps();
+        });
+
         Schema::create('booking_lists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->unsigned()->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
-            $table->unsignedBigInteger('staff_id')->unsigned()->nullable();;
+            $table->unsignedBigInteger('staff_id')->unsigned()->nullable();
             $table->unsignedBigInteger('location_id');
+            $table->unsignedBigInteger('status')->default(0);
+            $table->unsignedBigInteger('status_cost')->default(0);
+
             $table->string('project_name');
             $table->string('agency');
             $table->string('club_name');
@@ -77,10 +104,13 @@ return new class extends Migration
             $table->string('end');
             $table->string('file_document');
             $table->string('project_cost')->default('nil');
-            $table->string('status')->default(0);
+
             $table->string('title');
             $table->string('status_email')->default(0);
-            $table->string('status_cost')->default(0);
+
+            $table->foreign('status')->references('id')->on('bookingstatus');
+            $table->foreign('status_cost')->references('id')->on('coststatus');
+
             $table->foreign('admin_id')->references('id')->on('admins');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('staff_id')->references('id')->on('staff');
@@ -116,5 +146,9 @@ return new class extends Migration
         Schema::dropIfExists('locations');
         Schema::dropIfExists('staff');
         Schema::dropIfExists('attentions');
+        Schema::dropIfExists('bookingstatuses');
+        Schema::dropIfExists('coststatus');
+        Schema::dropIfExists('insiders');
+
     }
 };

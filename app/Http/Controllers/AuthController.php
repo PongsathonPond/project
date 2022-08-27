@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,7 +25,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:5|max:12',
+            'password' => 'required',
         ]);
 
         $userInfo = Staff::where('email', '=', $request->email)->first();
@@ -41,7 +42,7 @@ class AuthController extends Controller
                 // return view('page.staff.routes.index');
                 return redirect()->route('staff-dashboard');
             } else {
-                return back()->with('fail', 'Incorrect password');
+                return back()->with('fail', 'อีเมล์หรือรหัสผ่านไม่ถูกต้อง');
             }
         }
 
@@ -74,7 +75,37 @@ class AuthController extends Controller
     // show dashboard
     public function dashboard()
     {
-        return view('page.staff.routes.index');
+
+        $countUser = DB::table('users')->select(DB::raw('count(id) as total'))->get();
+        $countStaff = DB::table('staff')->select(DB::raw('count(id) as total'))->get();
+        $countLocation = DB::table('locations')->select(DB::raw('count(location_id) as total'))->get();
+
+        $countRequest = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->get();
+        $countRequestPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status', 1)->get();
+        $countRequestNoPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status', 0)->get();
+
+        $countViceAdminPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status_cost', 1)->get();
+        $countViceAdminNoPass = DB::table('booking_lists')->select(DB::raw('count(id) as total'))->where('status_cost', 0)->get();
+
+        $sumLocation = DB::table('booking_lists')
+            ->join('locations', 'booking_lists.location_id', '=', 'locations.location_id')
+            ->select('locations.location_name', 'locations.location_image', DB::raw('count(booking_lists.location_id) as total'))
+            ->groupBy('locations.location_name', 'locations.location_image')
+            ->orderBy('total', 'desc')
+            ->get();
+
+        return view('page.staff.routes.index', compact('countUser',
+            'countStaff',
+            'countLocation',
+            'countRequest',
+            'countRequestPass',
+            'countRequestNoPass',
+            'countViceAdminPass',
+            'countViceAdminNoPass',
+            'sumLocation',
+
+        ));
+
     }
 
     // logout method to clear the sesson of logged in user

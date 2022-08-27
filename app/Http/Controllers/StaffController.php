@@ -42,17 +42,16 @@ class StaffController extends Controller
     {
         $requeststaff = DB::table('booking_lists')
 
-            ->join('users', 'users.id', 'booking_lists.user_id')
             ->join('locations', 'booking_lists.location_id', 'locations.location_id')
             ->join('attentions', 'locations.location_id', 'attentions.location_id')
             ->join('staff', 'staff.id', 'attentions.staff_id')
             ->where('status_cost', 1)
             ->where('staff.id', '=', session('id'))
-            ->select('users.*', 'booking_lists.*', 'locations.location_name', 'staff.email')
-            ->paginate(3);
+            ->select('booking_lists.*', 'locations.location_name')
+            ->paginate(4);
 
         return view('page.staff.request.index', compact('requeststaff'));
-   
+
     }
 
     public function store(Request $request)
@@ -108,26 +107,16 @@ class StaffController extends Controller
     public function location(Request $request)
     {
 
+        $locationstaff = DB::table('locations')
 
-     $locationstaff = DB::table('locations')
+            ->join('attentions', 'locations.location_id', 'attentions.location_id')
+            ->join('staff', 'staff.id', 'attentions.staff_id')
+            ->where('staff.id', '=', session('id'))
+            ->select('locations.*', 'attentions.*', 'staff.email')
+            ->paginate(3);
 
+        return view('page.staff.location.index', compact('locationstaff'));
 
-     ->join('attentions', 'locations.location_id', 'attentions.location_id')
-     ->join('staff', 'staff.id', 'attentions.staff_id')
-     ->where('staff.id', '=', session('id'))
-     ->select('locations.*', 'attentions.*','staff.email')
-     ->paginate(3);
-
-
-      
-       return view('page.staff.location.index', compact('locationstaff'));
-   
-   
-
-
-        
-
-    
     }
 
 }

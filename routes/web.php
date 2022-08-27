@@ -4,6 +4,7 @@ use App\Http\Controllers\AddBookingStaff;
 use App\Http\Controllers\AddBookingUserout;
 use App\Http\Controllers\AdminFullcalendar;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CalReqController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\HistoryAdmin;
@@ -43,7 +44,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/addbooking/{id}', [AddBookingUserout::class, 'edit']);
     Route::post('/addbooking/add', [AddBookingUserout::class, 'store'])->name('booking-add');
 
-    //จัดการปฏิทิน
+    //คำนวณราคาห้อง
+    Route::get('/calculate/', [CalReqController::class, 'index'])->name('cal-user');
+    Route::get('/calculate/user/{id}', [CalReqController::class, 'edit']);
+    Route::post('/calculate/add', [CalReqController::class, 'index2'])->name('cal-add');
+    Route::get('/search_location', [LocaiotnManageSuperAdmin::class, 'index2'])->name('search');
 
 });
 Route::get('fullcalender2/{id}', [AddBookingUserout::class, 'index2']);
@@ -76,6 +81,10 @@ Route::get('fullcalenderstaff/{id}', [AddBookingStaff::class, 'index2']);
 //request me
 
 Route::get('/request/staff/', [RequestStaffController::class, 'index'])->name('request-staff');
+
+//history
+Route::get('/staff/history', [HistoryAdmin::class, 'index3'])->name('staff_history_index');
+Route::get('/staff/historyreq', [HistoryAdmin::class, 'index4'])->name('staff_history_req');
 
 /////staff///////////////////////////////////////////////////////////////////////////
 

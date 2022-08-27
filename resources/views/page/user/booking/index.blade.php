@@ -15,6 +15,27 @@
                     })
                 </script>
             @endif
+
+            <div class="row">
+                <div class="col-9"></div>
+                <div class="col-3 justify-content-end mt--6">
+                    <!-- Search -->
+                    <form action="{{ route('search') }}" method="GET" class="d-md-flex ml-lg-auto">
+                        <div class="form-group mb-0">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="form-group">
+                                        <input class="form-control" name="name" type="text"
+                                            placeholder="ค้นหาจากชื่อ">
+                                    </div>
+                                </div>
+
+                                <div class="col-2"><input type="submit" value="ค้นหา" class="btn btn-primary"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             @foreach ($location as $item)
                 <div class="col-12 col-lg-3">
                     <div class="card">
@@ -54,6 +75,4 @@
             {{-- @foreach ($booking as $item)
                 <a href="{{ asset($item->file_document) }}" target=" _blank">Open the pdf!</a>
             @endforeach --}}
-
-
-@endsection
+        @endsection

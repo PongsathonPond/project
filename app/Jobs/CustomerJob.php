@@ -18,21 +18,30 @@ class CustomerJob implements ShouldQueue
     protected $email;
     protected $name;
     protected $content;
+    protected $head;
 
+    protected $location;
+    protected $start;
+    protected $end;
+    protected $status;
     /**
      * Create a new job instance.
      *
      * @return void
      */
 
-    public function __construct($email, $name, $content)
-    {
+    public function __construct($email, $name,
+        $content, $head, $location, $start, $end, $status) {
         //
         $this->email = $email;
         $this->name = $name;
-
         $this->content = $content;
+        $this->head = $head;
 
+        $this->location = $location;
+        $this->start = $start;
+        $this->end = $end;
+        $this->status = $status;
 
     }
 
@@ -45,7 +54,14 @@ class CustomerJob implements ShouldQueue
     {
         //
 
-        Mail::to($this->email['email'])->send(new Sendmail($this->name['name'], $this->content['content']));
+        Mail::to($this->email['email'])->send(new Sendmail($this->name['name'],
+            $this->content['content'],
+            $this->head['head'],
+            $this->location['location'],
+            $this->start['start'],
+            $this->end['end'],
+            $this->status['status']
+        ));
 
     }
 }

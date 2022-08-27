@@ -7,19 +7,24 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/rmuti.png">
     <title>
-        UserCms
+        Location Request RMUT
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="/../../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="/../../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="/../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="/../../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="/../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="/../../assets/css/argon-dashboard.css?v=2.0.0" rel="stylesheet" />
+    <link id="pagestyle" href="/../assets/css/argon-dashboard.css?v=2.0.0" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.css" />
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -108,9 +113,27 @@
                 @endif
 
 
-
-
-
+                @if (request()->routeIs('cal-user'))
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('cal-user') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-list-alt text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">คำนวณค่าใช้จ่าย</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('cal-user') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-list-alt text-warning text-sm opacity-10"></i>
+                            </div>
+                            <span class="nav-link-text  ms-1">คำนวณค่าใช้จ่าย</span>
+                        </a>
+                    </li>
+                @endif
 
 
 
@@ -306,6 +329,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="/../../assets/js/argon-dashboard.min.js?v=2.0.0"></script>
+    @stack('js')
     {{-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
 
     @stack('js') --}}

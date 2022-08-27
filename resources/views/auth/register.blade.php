@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -10,9 +10,12 @@
             @csrf
 
             <div>
-                <x-jet-label for="title_name" value="{{ __('คำนำหน้า') }}" />
-                <x-jet-input id="title_name" class="block mt-1 w-full" type="text" name="title_name"
-                    :value="old('title_name')" required autofocus autocomplete="title_Name" />
+                <x-jet-label for="gender" value="{{ __('คำนำหน้าชื่อ') }}" />
+                <select id="gender" class="block mt-1 w-full" type="select" name="title_name" :value="old('gender')"
+                    required>
+                    <option value="นาย">นาย</option> <!-- Viene salvato il value -->
+                    <option value="นาย">นางสาว</option>
+                </select>
             </div>
 
 
@@ -26,8 +29,8 @@
 
             <div>
                 <x-jet-label for="last_Name" value="{{ __('นามสกุล') }}" />
-                <x-jet-input id="last_name" class="block mt-1 w-full" type="text" name="last_name"
-                    :value="old('last_name')" required autofocus autocomplete="last_name" />
+                <x-jet-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')"
+                    required autofocus autocomplete="last_name" />
             </div>
 
             <div>
@@ -62,9 +65,19 @@
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Terms of Service') . '</a>',
-    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Privacy Policy') . '</a>',
-]) !!}
+                                    'terms_of_service' =>
+                                        '<a target="_blank" href="' .
+                                        route('terms.show') .
+                                        '" class="underline text-sm text-gray-600 hover:text-gray-900">' .
+                                        __('Terms of Service') .
+                                        '</a>',
+                                    'privacy_policy' =>
+                                        '<a target="_blank" href="' .
+                                        route('policy.show') .
+                                        '" class="underline text-sm text-gray-600 hover:text-gray-900">' .
+                                        __('Privacy Policy') .
+                                        '</a>',
+                                ]) !!}
                             </div>
                         </div>
                     </x-jet-label>

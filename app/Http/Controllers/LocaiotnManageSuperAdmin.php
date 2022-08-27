@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\location;
+use App\Models\Location;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LocaiotnManageSuperAdmin extends Controller
 {
@@ -13,6 +14,18 @@ class LocaiotnManageSuperAdmin extends Controller
 
         $location = location::paginate(3);
         return view('page.admin.locationmanage.index', compact('location'));
+    }
+
+    public function index2(Request $request)
+    {
+
+        $location = DB::table('locations');
+        if ($request->name) {
+            $location = $location->where('location_name', 'LIKE', "%" . $request->name . "%");
+        }
+
+        $location = $location->paginate(10);
+        return view('page.user.booking.index', compact('location'));
     }
 
     public function store(Request $request)
@@ -48,6 +61,7 @@ class LocaiotnManageSuperAdmin extends Controller
         );
         //เข้ารหัสรูปภาพ
         $room_image = $request->file('location_image');
+
         //gennerat ชื่อภาพ
         $name_gen = hexdec(uniqid());
         //ดึงนามสกุลไฟล์ภาพ

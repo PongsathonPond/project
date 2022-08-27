@@ -23,7 +23,7 @@ class AuthAdminController extends Controller
 
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:5|max:12',
+            'password' => 'required',
         ]);
 
         $userInfo = Admin::where('email', '=', $request->email)->first();
@@ -54,7 +54,7 @@ class AuthAdminController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => 'required', // required and email format validation
             'last_name' => 'required', // required and number field validation
-            'email' => 'required|email|unique:staff,email', // required and email format validation
+            'email' => 'required|email|unique:admins,email', // required and email format validation
             'password' => 'required|min:8', // required and number field validation
 
         ]); // create the validations
@@ -94,8 +94,8 @@ class AuthAdminController extends Controller
 
         $sumLocation = DB::table('booking_lists')
             ->join('locations', 'booking_lists.location_id', '=', 'locations.location_id')
-            ->select('locations.location_name', DB::raw('count(booking_lists.location_id) as total'))
-            ->groupBy('locations.location_name')
+            ->select('locations.location_name', 'locations.location_image', DB::raw('count(booking_lists.location_id) as total'))
+            ->groupBy('locations.location_name', 'locations.location_image')
             ->orderBy('total', 'desc')
             ->get();
 

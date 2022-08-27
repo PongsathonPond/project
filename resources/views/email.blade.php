@@ -1,156 +1,174 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="x-apple-disable-message-reformatting">
-    <title></title>
-    <!--[if mso]>
-  <noscript>
-    <xml>
-      <o:OfficeDocumentSettings>
-        <o:PixelsPerInch>96</o:PixelsPerInch>
-      </o:OfficeDocumentSettings>
-    </xml>
-  </noscript>
-  <![endif]-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location Request Management System of RMUTI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
     <style>
-        table,
-        td,
-        div,
-        h1,
-        p {
-            font-family: Arial, sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    </style>
+
+    <style type="text/css" media="screen">
+        [style*='Kanit'] {
+            font-family: 'Kanit', sans-serif !important
+        }
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /*background: linear-gradient(135deg, #71b7e6, #9b59b6);*/
+            background-color: #f8f8f8;
+            font-family: "Kanit", sans-serif;
+        }
+
+        .icon {
+            text-align: center;
+            margin-top: 37px;
+        }
+
+        .icon-title {
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+            font-weight: 200;
+            font-size: 15px;
+            text-align: center;
+            color: #6a6d6d;
+        }
+
+        .title {
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            text-align: center;
+            color: #6a6d6d;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 664px;
+            width: 100%;
+            background-color: white;
+            margin: 0 auto;
+            padding: 30px 37px 37px 37px;
+            border-radius: 18px;
+        }
+
+        .text {
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 16px;
+            text-align: left;
+            color: #6a6d6d;
+            background-color: white;
+            border: none;
+            width: 100%;
+            border-radius: 7px;
+            /*border: 1px solid hotpink;*/
+        }
+
+        .approve {
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+            text-align: center;
+            font-weight: 400;
+            font-size: 16px;
+            color: white;
+            background: #5bb084;
+            width: 100%;
+            height: 35px;
+            border: none;
+            border-radius: 7px;
+            margin-top: 8px;
+        }
+
+        .notapproved {
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+            text-align: center;
+            font-weight: 400;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(135deg, #efb236, #ed9c17);
+            width: 100%;
+            height: 35px;
+            border: none;
+            border-radius: 7px;
+            margin-top: 8px;
+        }
+
+        .end {
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+            font-size: 16px;
+            text-align: center;
+            color: #5bb084;
+            margin-top: 40px;
+        }
+
+        .the-end {
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+            font-size: 15px;
+            font-weight: 200;
+            text-align: center;
         }
     </style>
 </head>
 
-<body style="margin:0;padding:0;">
-    <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
-        <tr>
-            <td align="center" style="padding:0;">
-                <table role="presentation"
-                    style="width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;">
-                    <tr>
-                        <td align="center" style="padding:40px 0 30px 0;background:#70bbd9;">
-                            <img src="https://assets.codepen.io/210284/h1.png" alt="" width="300"
-                                style="height:auto;display:block;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding:36px 30px 42px 30px;">
-                            <table role="presentation"
-                                style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
-                                <tr>
-                                    <td style="padding:0 0 36px 0;color:#153643;">
-                                        <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">
-                                            RMUTI BOOKING</h1>
-                                        <p
-                                            style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus
-                                            adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget
-                                            accumsan et dictum, nisi libero ultricies ipsum, posuere neque at erat.</p>
-                                        <p
-                                            style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                            <a href="http://www.example.com"
-                                                style="color:#ee4c50;text-decoration:underline;">In tempus felis
-                                                blandit</a>
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding:0;">
-                                        <table role="presentation"
-                                            style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
-                                            <tr>
-                                                <td style="width:260px;padding:0;vertical-align:top;color:#153643;">
-                                                    <p
-                                                        style="margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                                        <img src="https://assets.codepen.io/210284/left.gif"
-                                                            alt="" width="260"
-                                                            style="height:auto;display:block;" />
-                                                    </p>
-                                                    <p
-                                                        style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                                                        tempus adipiscing felis, sit amet blandit ipsum volutpat sed.
-                                                        Morbi porttitor, eget accumsan dictum, est nisi libero ultricies
-                                                        ipsum, in posuere mauris neque at erat.</p>
-                                                    <p
-                                                        style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                                        <a href="http://www.example.com"
-                                                            style="color:#ee4c50;text-decoration:underline;">Blandit
-                                                            ipsum volutpat sed</a>
-                                                    </p>
-                                                </td>
-                                                <td style="width:20px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
-                                                <td style="width:260px;padding:0;vertical-align:top;color:#153643;">
-                                                    <p
-                                                        style="margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                                        <img src="https://assets.codepen.io/210284/right.gif"
-                                                            alt="" width="260"
-                                                            style="height:auto;display:block;" />
-                                                    </p>
-                                                    <p
-                                                        style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                                        {{ $test }}, eget est accumsan dictum, nisi libero
-                                                        ultricies ipsum, in posuere mauris neque at erat. Lorem ipsum
-                                                        dolor sit amet, consectetur adipiscing elit. In tempus
-                                                        adipiscing felis, sit amet blandit ipsum volutpat sed.</p>
-                                                    <p
-                                                        style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                                                        <a href="http://www.example.com"
-                                                            style="color:#ee4c50;text-decoration:underline;">In tempus
-                                                            felis blandit</a>
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding:30px;background:#ee4c50;">
-                            <table role="presentation"
-                                style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
-                                <tr>
-                                    <td style="padding:0;width:50%;" align="left">
-                                        <p
-                                            style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
-                                            &reg; Someone, Somewhere 2021<br /><a href="http://www.example.com"
-                                                style="color:#ffffff;text-decoration:underline;">Unsubscribe</a>
-                                        </p>
-                                    </td>
-                                    <td style="padding:0;width:50%;" align="right">
-                                        <table role="presentation"
-                                            style="border-collapse:collapse;border:0;border-spacing:0;">
-                                            <tr>
-                                                <td style="padding:0 0 0 10px;width:38px;">
-                                                    <a href="http://www.twitter.com/" style="color:#ffffff;"><img
-                                                            src="https://assets.codepen.io/210284/tw_1.png"
-                                                            alt="Twitter" width="38"
-                                                            style="height:auto;display:block;border:0;" /></a>
-                                                </td>
-                                                <td style="padding:0 0 0 10px;width:38px;">
-                                                    <a href="http://www.facebook.com/" style="color:#ffffff;"><img
-                                                            src="https://assets.codepen.io/210284/fb_1.png"
-                                                            alt="Facebook" width="38"
-                                                            style="height:auto;display:block;border:0;" /></a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+<body>
+    <div class="icon"><img src="https://sv1.picz.in.th/images/2022/08/13/XHBAZZ.png"
+            style="width: 120px; height: 155px" /></div>
+    <div class="icon-title">Location Request Management System of RMUTI</div>
+    <div class="title">แบบฟอร์มตอบกลับคำร้องขอใช้สถานที่ มทร.อีสาน</div>
+    <div class="container">
+        <form>
+            <div>
+                <p style="color: #5bb084">ชื่อรายการจอง</p>
+                <button class="text">{{ $head }}</button>
+            </div>
+            <br>
+            <div>
+                <p style="color: #5bb084">ชื่อสถานที่</p>
+                <button class="text">{{ $location }}</button>
+            </div>
+            <br>
+            <div>
+                <p style="color: #5bb084">วันที่-เวลาในการจองขอใช้สถานที่</p>
+                <button class="text">{{ $start }} - {{ $end }}</button>
+            </div>
+            <br>
+
+
+
+            <div>
+                <p style="color: #5bb084">สถานะคำร้องขอใช้สถานที่</p>
+                <button class="approve">ผ่านการอนุมัติ</button>
+                <!-- <button class="notapproved">ไม่ผ่านการอนุมัติ</button>  -->
+            </div>
+
+        </form>
+    </div>
+    <div class="end">มหาวิทยาลัยเทคโนโลยีราชมงคลอีสาน</div>
+    <div class="the-end">
+        <p>Rajamangala University of Technology lsan ,RMUTI</p>
+        <p>744 ถ.สุรนารายณ์ ต.ในเมือง อ.เมืองนครราชสีมา จ.นครราชสีมา 30000</p>
+    </div>
 </body>
 
 </html>

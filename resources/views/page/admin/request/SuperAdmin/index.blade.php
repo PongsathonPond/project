@@ -343,24 +343,52 @@
                                         <form action="{{ route('addlist') }}" method="post">
                                             @csrf
 
-                                            <input type="text" class="form-control" name="email"
-                                                value=@foreach ($item->booktouser as $item1) {{ $item1->email }} @endforeach>
-                                            <input type="text" class="form-control" name="content">
+                                            <div class="row">
 
-                                            <input type="submit" value="เพิ่ม" class="btn btn-success "
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="example-datetime-local-input"
+                                                            class="form-control-label">เหตุผล</label>
+                                                        <input type="text" class="form-control" name="content">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <input type="text" class="form-control" name="email"
+                                                value=@foreach ($item->booktouser as $item1) {{ $item1->email }} @endforeach
+                                                @foreach ($item->booktoadmin as $item2) {{ $item2->email }} @endforeach>
+
+
+
+                                            <input type="hidden" class="form-control" name="head"
+                                                value="{{ $item->project_name }}">
+
+                                            <input type="hidden" class="form-control" name="location"
+                                                value=@foreach ($item->booktolocation as $item1) {{ $item1->location_name }} @endforeach>
+
+
+                                            <input type="hidden" class="form-control" name="start"
+                                                value="{{ $thaiDateHelper->simpleDateFormat($item->start) }}">
+
+                                            <input type="hidden" class="form-control" name="end"
+                                                value="{{ $thaiDateHelper->simpleDateFormat($item->end) }}">
+
+                                            <input type="hidden" class="form-control" name="status"
+                                                value="{{ $item->status }}">
+
+
+
+                                            <input type="submit" value="ส่งเมล์" class="btn btn-success "
                                                 style="margin-left: 5%">
+
 
 
 
                                         </form>
 
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn bg-gradient-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn bg-gradient-primary">Save
-                                            changes</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -390,13 +418,6 @@
 
                                             <div class="pl-lg-4">
                                                 <div class="row" style="text-align: left">
-
-
-
-
-
-
-
 
                                                     <div class="col-lg-12">
                                                         <div class="form-group">

@@ -139,7 +139,7 @@
 
                                 </h6>
                                 <h6 class="font-weight-bolder">
-                                    @foreach ($countViceAdminNoPass as $item)
+                                    @foreach ($countViceAdminPass as $item)
                                         ผ่านการประเมิน :{{ $item->total }} คำขอ
                                     @endforeach
 
@@ -148,10 +148,9 @@
                                 <h6 class="font-weight-bolder">
 
 
-                                    @foreach ($countViceAdminPass as $item)
+                                    @foreach ($countViceAdminNoPass as $item)
                                         รอการประเมิน :{{ $item->total }} คำขอ
                                     @endforeach
-
                                 </h6>
 
 
@@ -187,11 +186,13 @@
                                 <thead>
                                     <tr>
                                         <th class=" text-center text-xs font-weight-bolder" data-sort="name">
-                                            ลำดับ</th>
-                                        <th class=" text-center text-xs font-weight-bolder" data-sort="name">
                                             รูป</th>
                                         <th class=" text-center text-xs font-weight-bolder" data-sort="name">
                                             ชื่อห้อง</th>
+                                        <th class=" text-center text-xs font-weight-bolder" data-sort="name">
+                                            ลำดับ</th>
+
+
 
 
                                     </tr>
@@ -202,9 +203,16 @@
                                         <tr>
 
                                             <td class="align-middle text-center">
+
+                                                <img src="{{ asset($item->location_image) }}" alt="" width="60vh"
+                                                    height="60vh">
+
+                                            </td>
+
+                                            <td class="align-middle text-center">
                                                 {{ $item->location_name }}
                                             </td>
-                                            <td class="align-middle text-center"></td>
+
 
                                             <td class="align-middle text-center">
                                                 {{ $item->total }}

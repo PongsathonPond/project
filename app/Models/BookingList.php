@@ -39,4 +39,11 @@ class BookingList extends Model
         return $this->hasMany(User::class, 'id', 'user_id');
 
     }
+
+    public function booktoadmin()
+    {
+
+        return $this->hasMany(Admin::class, 'id', 'admin_id');
+
+    }
 }
