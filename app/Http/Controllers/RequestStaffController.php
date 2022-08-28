@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\BookingList;
-use App\Models\location;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 

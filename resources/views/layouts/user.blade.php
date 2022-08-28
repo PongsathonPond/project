@@ -251,7 +251,8 @@
                 <div class="float-start">
                     <h5 class="mt-3 mb-0">ยินดีต้อนรับ</h5>
                     <br>
-                    <p>นาย พงศธร ลครชัย</p>
+                    <p> {{ session('first_name') }} {{ session('last_name') }}</p>
+
                     <p>สถานะ:ผู้ใช้ภายนอก</p>
 
 

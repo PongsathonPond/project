@@ -10,6 +10,7 @@ use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\HistoryAdmin;
 use App\Http\Controllers\LocaiotnManageSuperAdmin;
 use App\Http\Controllers\loginAdmin\AuthAdminController;
+use App\Http\Controllers\loginOutsider\AuthOutsiderController;
 use App\Http\Controllers\RequestAdminController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\RequestStaffController;
@@ -34,23 +35,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('indexpage');
 });
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    //เปลี่ยนหน้า
-    Route::get('/index', [RouteController::class, 'index'])->name('index');
+//เปลี่ยนหน้า
 
-    //user ภายนอกส่ง data
-    Route::get('/addbooking/', [AddBookingUserout::class, 'index'])->name('add-booking');
-    Route::get('/addbooking/{id}', [AddBookingUserout::class, 'edit']);
-    Route::post('/addbooking/add', [AddBookingUserout::class, 'store'])->name('booking-add');
+Route::post('/user-do-login', [AuthOutsiderController::class, "doLogin"])->name('login_outsider');
+Route::get('/index', [RouteController::class, 'index'])->name('index');
 
-    //คำนวณราคาห้อง
-    Route::get('/calculate/', [CalReqController::class, 'index'])->name('cal-user');
-    Route::get('/calculate/user/{id}', [CalReqController::class, 'edit']);
-    Route::post('/calculate/add', [CalReqController::class, 'index2'])->name('cal-add');
-    Route::get('/search_location', [LocaiotnManageSuperAdmin::class, 'index2'])->name('search');
+//user ภายนอกส่ง data
+Route::get('/addbooking/', [AddBookingUserout::class, 'index'])->name('add-booking');
+Route::get('/addbooking/{id}', [AddBookingUserout::class, 'edit']);
+Route::post('/addbooking/add', [AddBookingUserout::class, 'store'])->name('booking-add');
 
-});
+//คำนวณราคาห้อง
+Route::get('/calculate/', [CalReqController::class, 'index'])->name('cal-user');
+Route::get('/calculate/user/{id}', [CalReqController::class, 'edit']);
+Route::post('/calculate/add', [CalReqController::class, 'index2'])->name('cal-add');
+Route::get('/search_location', [LocaiotnManageSuperAdmin::class, 'index2'])->name('search');
+
+//Outsider
+
 Route::get('fullcalender2/{id}', [AddBookingUserout::class, 'index2']);
 Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
 Route::resource('/booking', FullCalenderController::class);

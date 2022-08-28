@@ -15,7 +15,7 @@
         <div class="forms-container">
             <div class="signin-signup">
 
-                <form method="POST" class="sign-in-form" action="{{ route('login') }}">
+                <form method="POST" class="sign-in-form" action="{{ route('login_outsider') }}">
                     @csrf
 
                     <h2 class="title">Login</h2>

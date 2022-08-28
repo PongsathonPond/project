@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserManageSuperAdmin extends Controller
@@ -13,7 +12,7 @@ class UserManageSuperAdmin extends Controller
     {
         $users = User::all();
         $admin = Admin::all();
-        return view('page.admin.usermanage.index', compact('users','admin'));
+        return view('page.admin.usermanage.index', compact('users', 'admin'));
     }
 
     public function update(Request $request, $id)
